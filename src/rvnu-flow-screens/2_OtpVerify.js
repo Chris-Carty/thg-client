@@ -12,6 +12,9 @@ import OtpInput from 'react-otp-input';
 
 export default function VerifyOtp({activeStep, setActiveStep}) {
 
+  // Get session vars
+  //const firstName = localStorage.getItem("firstName")
+  const phoneNumber = localStorage.getItem("phoneNumber")
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
   // Error messages
@@ -36,16 +39,75 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
 
   // If OTP lenght equals 6, verfiy it. 
   const isValidOtp = () => {
-
     if (inputOtp == null) {
       setError(true)
     } else if (inputOtp.length === 6) {
-      console.log(inputOtp)
+      verifyOtpCode(inputOtp)
       setLoading(true)
     } else {
       setError(true)
     }
   }
+
+  const verifyOtpCode = async (inputOtp) => {
+
+    try{
+      api
+      .post(`/verify/verifyOtp/` + inputOtp + `/`+ phoneNumber, {
+      inputOtp,
+      phoneNumber,
+      })
+      .then(async (response) => {
+        const result = response.data.verification_check.valid
+        if (result === true) {
+          console.log("Valid OTP")
+          getRvnuAccount()
+        } 
+      })
+      .catch((error) => {
+        setError(true)
+        setLoading(false)
+        console.log(error)
+        console.log("Invalid OTP")
+      })
+    } catch {
+      setLoading(false)
+      console.log("Error verifying OTP")
+    }
+
+}
+
+  
+  const getRvnuAccount = async () => {
+
+    const num = phoneNumber
+
+     try{
+      api
+      .get(`/user/getUserRvnuAccount/` + num, {
+        num,
+      })
+      .then(async (response) => {
+        const result = response.data.data
+        if (result.length === 1) {
+          localStorage.setItem("userRvnuAccount", JSON.stringify(result[0]))
+          setActiveStep(activeStep + 1)
+        } else {
+          setLoading(false)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+        setError(true)
+        setLoading(false)
+      })
+    } catch {
+        setError(true)
+        setLoading(false)
+        console.log("Error: could not verify") 
+    }
+
+  } 
 
 
   /*
@@ -57,7 +119,6 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
     {phoneNumber} 
   </span>.
   */
-
 
   return (
 

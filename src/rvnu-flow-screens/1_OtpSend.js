@@ -35,39 +35,20 @@ export default function SendOtp({activeStep, setActiveStep}) {
   }, [inputNumber]);
 
 
-  const isValidNumber = () => {
-
-    //append '+';
-    const phoneNumber = '+' + inputNumber
-    console.log(phoneNumber)
-    setLoading(true)
-    //setActiveStep(activeStep + 1)
-/*
-    if (!phoneNumber) {
-
-      setLoading(false)
-      setErrorMsg('Invalid number')
-
-    } else {
-
-      const numFormat = phoneNumber.replace(/^0/,'+44')
-      checkUserExists(numFormat)
-
-    } 
-    */
-
-  } 
-
-  const checkUserExists = async (phoneNumber) => {
-
+  const checkUserExists = async () => {
       // If mobile number has been provided, check if Rvnu user exists
+      setLoading(true)
+      const phoneNumber = '+' + inputNumber
+      console.log(phoneNumber)
+
       try{
         api
         .get(`/user/getName/` + phoneNumber, {
           num: phoneNumber,
         })
         .then(async (response) => {
-          const result = response.data
+          const result = response.data.data
+          console.log(response)
 
             if (result.length === 1) {
 
@@ -84,17 +65,17 @@ export default function SendOtp({activeStep, setActiveStep}) {
               sendOtp(phoneNumber)
 
             } else {
+              console.log("Error user does not exist")
               setLoading(false)
               setError(true)
             }
-
         })
         .catch((error) => {
           console.log(error)
           setLoading(false)
         })
       } catch {
-        console.log("Error user does not exist")
+        console.log("Request Error")
         setLoading(false) 
       }
   }
@@ -138,7 +119,7 @@ export default function SendOtp({activeStep, setActiveStep}) {
         loading={loading}
         isButtonDisabled={isButtonDisabled}
         buttonText={"Next"}
-        onClick={ () => isValidNumber() }>
+        onClick={ () =>  checkUserExists() }>
       </FormButton>
       { error ? <ErrorMsg errorText={'Error, please try again.'} /> : <p></p> }
     </FormWrapper>

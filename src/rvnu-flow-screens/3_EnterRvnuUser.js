@@ -50,9 +50,9 @@ export default function EnterRvnuUser({activeStep, setActiveStep}) {
     }
   }
 
-
-
   return (
+
+    /* NOTE ABOUT REDIRECTING TO TRUELAYER */
 
     <FormWrapper>
       <Subtitle subtitleText={"Enter RVNU username"} >
