@@ -1,0 +1,14 @@
+/* @import url(https://fonts.googleapis.com/css2?family=DM+Sans); */
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.ttf') format('truetype'), url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff') format('woff'), url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff2') format('woff2');
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
