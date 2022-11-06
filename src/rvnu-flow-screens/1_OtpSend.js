@@ -19,7 +19,7 @@ export default function SendOtp({activeStep, setActiveStep}) {
   // Error messages
   const [error, setError] = useState(false);
   // phoneNumber entered bu user will be in E.164 format.
-  const [inputNumber, setInputNumber] = useState('');
+  const [inputNumber, setInputNumber] = useState('447527943282');
 
   useEffect(() => {
     // Remove error text
@@ -39,7 +39,6 @@ export default function SendOtp({activeStep, setActiveStep}) {
       // If mobile number has been provided, check if Rvnu user exists
       setLoading(true)
       const phoneNumber = '+' + inputNumber
-      console.log(phoneNumber)
 
       try{
         api
@@ -48,7 +47,6 @@ export default function SendOtp({activeStep, setActiveStep}) {
         })
         .then(async (response) => {
           const result = response.data.data
-          console.log(response)
 
             if (result.length === 1) {
 
@@ -59,10 +57,10 @@ export default function SendOtp({activeStep, setActiveStep}) {
               localStorage.setItem("phoneNumber", phoneNumber)
 
               // Delete for production
-              //setActiveStep(activeStep + 1)
+              setActiveStep(activeStep + 1)
 
               // Uncomment for production
-              sendOtp(phoneNumber)
+              //sendOtp(phoneNumber)
 
             } else {
               console.log("Error user does not exist")

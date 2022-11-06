@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: rgba(234,234,234,255);
   padding: 20px;
   font-size: 16px;
   font-weight: 200;

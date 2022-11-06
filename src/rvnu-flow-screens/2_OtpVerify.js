@@ -90,7 +90,7 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       .then(async (response) => {
         const result = response.data.data
         if (result.length === 1) {
-          localStorage.setItem("userRvnuAccount", JSON.stringify(result[0]))
+          localStorage.setItem("payerRvnuAccount", JSON.stringify(result[0]))
           setActiveStep(activeStep + 1)
         } else {
           setLoading(false)
@@ -153,7 +153,7 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       loading={loading}
       isButtonDisabled={isButtonDisabled}
       buttonText={"Next"}
-      onClick={ () => isValidOtp() }
+      onClick={ () => getRvnuAccount() }
       >
       </FormButton>
       { error ? <ErrorMsg errorText={'Invalid code, please try again.'} /> : <p></p> }

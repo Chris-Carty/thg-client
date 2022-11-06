@@ -8,8 +8,6 @@ import styled from 'styled-components';
 
 export default function ErrorScreen({activeStep, setActiveStep}) {
 
-  const span = "hello"
-
   return (
     <RvnuContainer>
             <FormWrapper>

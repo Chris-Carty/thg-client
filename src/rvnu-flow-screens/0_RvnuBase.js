@@ -4,11 +4,26 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OtpSend from './1_OtpSend';
 import OtpVerify from './2_OtpVerify';
 import EnterRvnuUser from './3_EnterRvnuUser';
+import Redirect from './4_Redirect';
+import GetPaymentStatus from './5_GetPaymentStatus';
+import PaymentExecuted from './6_PaymentExecuted';
+import PaymentFailed from './7_PaymentFailed';
+import Filler from './Misc_Filler';
+
 
 // Steps in the RVNU payment flow
-const steps = ['OtpSend', 'OtpVerify', 'EnterRvnuUser'];
+const steps = ['OtpSend', 'OtpVerify', 'EnterRvnuUser', 'Redirect', 'Filler', 'GetPaymentStatus', 'PaymentExecuted'];
 
 export default function Rvnu() {
+
+  const merchantSaleInfo = {
+    merchantID: '41784630-695b-4003-9588-89b322b59ac2',
+    merchantName: 'ASOS',
+    currency: 'GBP',
+    amount: 79.26,
+    reference: 'Merchant-X-1234',
+    redirectURL: 'http://localhost:3000'
+  }
 
   // Set activeStep in RVNU checkout flow
   const storedValueAsNumber = Number(localStorage.getItem('activeStep'));
@@ -39,6 +54,27 @@ export default function Rvnu() {
                   activeStep={activeStep}
                   setActiveStep={setActiveStep} 
                />;
+      case 3:
+        return <Redirect
+                activeStep={activeStep}
+                setActiveStep={setActiveStep} 
+                merchantSaleInfo={merchantSaleInfo}
+              />;
+      case 4:
+        return <Filler
+                  activeStep={activeStep}
+                  setActiveStep={setActiveStep} 
+                />;
+      case 5:
+        return <GetPaymentStatus
+                  activeStep={activeStep}
+                  setActiveStep={setActiveStep} 
+                  merchantSaleInfo={merchantSaleInfo}
+              />;
+      case 6:
+        return <PaymentExecuted
+                  merchantSaleInfo={merchantSaleInfo} 
+              />;
       default:
         throw new Error('Unknown step');
     }
@@ -69,7 +105,9 @@ export default function Rvnu() {
                 <React.Fragment>
                     {activeStep === steps.length ? (
                     <React.Fragment>
-                    <OtpSend />
+                    <PaymentFailed
+                        merchantSaleInfo={merchantSaleInfo} 
+                    />
                     </React.Fragment>
                     ) : (
                     <React.Fragment>
@@ -101,7 +139,7 @@ const RvnuContainer = styled.section`
 `
 
 const Window = styled.section`
-  background: rgba(234,234,234,255);
+  background: rgba(255,255,255,255);
   font-weight: 200;
   max-width: 480px;
   min-width: 480px;
@@ -120,7 +158,7 @@ const Window = styled.section`
     padding: 0px;
     overflow-x: hidden !important;
     overflow-y: hidden  !important;
-    background: rgba(234,234,234,255);
+    background: rgba(255,255,255,255);
   }
 `
 

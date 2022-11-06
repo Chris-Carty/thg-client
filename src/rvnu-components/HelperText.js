@@ -12,5 +12,5 @@ export default function HelperText({text}) {
 
 const Text = styled.p`
   font-size: 17px;
-  margin-top: 0;
+  margin-top: 10px;
 `

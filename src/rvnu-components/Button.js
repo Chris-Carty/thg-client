@@ -25,6 +25,7 @@ export default function FormButton({isButtonDisabled, buttonText, loading, ...pr
         style={{
           borderRadius: 10,
           marginTop: "20px",
+          color: "white"
         }} 
         variant="contained"
         disabled
