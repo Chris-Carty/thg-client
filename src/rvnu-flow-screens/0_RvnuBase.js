@@ -9,6 +9,11 @@ import GetPaymentStatus from './5_GetPaymentStatus';
 import PaymentExecuted from './6_PaymentExecuted';
 import PaymentFailed from './7_PaymentFailed';
 import Filler from './Misc_Filler';
+import SaleInfoHeader from '../rvnu-components/SaleInfoHeader'
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import clearStorage from '../utils/clearStorage';
+
 
 
 // Steps in the RVNU payment flow
@@ -53,6 +58,7 @@ export default function Rvnu() {
         return <EnterRvnuUser
                   activeStep={activeStep}
                   setActiveStep={setActiveStep} 
+                  merchantSaleInfo={merchantSaleInfo}
                />;
       case 3:
         return <Redirect
@@ -81,25 +87,34 @@ export default function Rvnu() {
 }
 
   const stepBackButton = (step) => {
-    switch (step) {
-      case 0:
+    if (step === 0 || step >= 2 ) {
         return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" visibility="hidden" />;
-      default:
-        return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" visibility="hidden" />;
+    } else {
+        return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" />;
     }
+  }
+
+  //Redirect back to merchant
+  // TODO APPEND UNIQUE ID TO THIS CHECKOUT FLOW (RECORD THIS IN A TABLE IN DB)
+  const merchantRedirect = async () => {
+      clearStorage()
+      window.open(`${merchantSaleInfo.redirectURL}/?user_cancelled=${'1234'}`, '_self')
   }
 
 
   return (
     <RvnuContainer>
-        <Window>
-            <Header>
+        <SaleInfoHeader  merchantSaleInfo={merchantSaleInfo} />
+        <BodyWindow>
+            <HeaderTwo>
                {stepBackButton(activeStep)}
-                <img src={require('../rvnu-assets/rvnu-logo-black.png')}
-                    alt="RVNU Logo" 
-                    height="12"
-                />
-            </Header>
+                <IconButton
+                  size='small'
+                  onClick={() => merchantRedirect()}
+                  >
+                  <CloseIcon  size='small' color='black'/>
+                </IconButton>
+            </HeaderTwo>
 
             <Body>
                 <React.Fragment>
@@ -116,9 +131,7 @@ export default function Rvnu() {
                     )}
                 </React.Fragment>
             </Body>
-
-
-        </Window>
+        </BodyWindow>
     </RvnuContainer>
   )
 }
@@ -132,29 +145,29 @@ const RvnuContainer = styled.section`
   background: #262626;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   overflow: hidden;
 
 `
 
-const Window = styled.section`
+const BodyWindow = styled.section`
   background: rgba(255,255,255,255);
   font-weight: 200;
-  max-width: 480px;
-  min-width: 480px;
-  max-height: 480px;
-  min-height: 480px;
+  max-width: 600px;
+  min-width: 600px;
+  max-height: 500px;
+  min-height: 500px;
   padding: 20px;
   overflow: hidden;
   box-sizing:border-box;
+  border-radius: 3px;
 
 
   @media (max-width: 480px) {
     max-width: 100%;
     min-width: 100%;
-    max-height: 100vh;
-    min-height: 100vh;
+    max-height: 85vh;
+    min-height: 85vh;
     padding: 0px;
     overflow-x: hidden !important;
     overflow-y: hidden  !important;
@@ -162,12 +175,11 @@ const Window = styled.section`
   }
 `
 
-const Header = styled.section`
+const HeaderTwo = styled.section`
 display: flex;
 flex-direction: row;
 align-items: center;
-justify-content: center;
-margin: 20px;
+justify-content: space-between;
 `
 
 const Body = styled.section`

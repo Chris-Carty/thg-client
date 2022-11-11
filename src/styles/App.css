@@ -1,5 +1,7 @@
 /* @import url(https://fonts.googleapis.com/css2?family=DM+Sans); */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
@@ -9,6 +11,8 @@
 
 body {
   font-family: 'DM Sans', sans-serif;
+  /*font-family: Montserrat, sans-serif;*/
+  letter-spacing: 0.4000000059604645px;
   font-weight: 400;
   margin: 0;
 }

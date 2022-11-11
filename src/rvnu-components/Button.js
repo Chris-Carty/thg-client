@@ -23,7 +23,7 @@ export default function FormButton({isButtonDisabled, buttonText, loading, ...pr
     { isButtonDisabled ? 
       <Button
         style={{
-          borderRadius: 10,
+          borderRadius: 4,
           marginTop: "20px",
           color: "white"
         }} 
@@ -33,7 +33,7 @@ export default function FormButton({isButtonDisabled, buttonText, loading, ...pr
      <Button
 
       style={{
-        borderRadius: 10,
+        borderRadius: 4,
         backgroundColor: "#000000",
         marginTop: "20px",
         }} 

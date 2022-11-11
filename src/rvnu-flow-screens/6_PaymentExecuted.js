@@ -9,9 +9,13 @@ import CountdownTimer from '../rvnu-components/CountdownTimer';
 import clearStorage from '../utils/clearStorage';
 import Socials from '../rvnu-components/Socials';
 import api from '../utils/api'
+import Confetti from 'react-confetti'
+import useWindowSize from "@rooks/use-window-size"
 
 export default function PaymentExecuted({merchantSaleInfo}) {
 
+    // set window width / height
+    const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
     // Get Payer AccountID to link to transaction. 
     const payerAccount = JSON.parse(localStorage.getItem('payerRvnuAccount'))
     const username = payerAccount.Username
@@ -35,9 +39,7 @@ export default function PaymentExecuted({merchantSaleInfo}) {
         navigator.clipboard.writeText(username)
     }
 
-
     //Redirect back to merchant
-    // TODO MAKE PROPER PAYMENT ID APPENDED
     const merchantRedirect = async () => {
         clearStorage()
         window.open(`${redirectURL}/?payment_id=${paymentID}`, '_self')
@@ -98,10 +100,17 @@ export default function PaymentExecuted({merchantSaleInfo}) {
   return (
 
     <FormWrapper>
+        <Confetti
+            width={innerWidth}
+            height={outerHeight}
+            recycle={false}
+            colors={['#BF40BF','#5D3FD3','#CBC3E3','#E6E6FA','#483248','#301934','#AA98A9','#E0B0FF','#51414F','#7F00FF','#BDB5D5','#DA70D6','#702963','#915F6D','#C3B1E1','#CCCCFF','#673147']}
+        />
         <CopyWrapper>
             <Subtitle>
-            Your username: 
+                Payment Successful!
             </Subtitle>
+            <HelperText text={"Your username:"} />
             <Highlighted>
                 {username}
                 <IconButton
@@ -111,14 +120,12 @@ export default function PaymentExecuted({merchantSaleInfo}) {
                 <ContentCopyIcon  size='small' color='black'/>
                 </IconButton>
             </Highlighted>
-            <Subtitle>
-                is valid for a further:
-            </Subtitle>
+            <HelperText text={"is valid for another"} />
             <Highlighted>
                 <CountdownTimer countdownTimestampMs={expiryTimestamp}/>
             </Highlighted>
             <Subtitle>
-            Share and start earning 
+                Share and start earning 
                 <span role='img' aria-label='flying-money'>💸</span> 
             </Subtitle>
             <Socials />

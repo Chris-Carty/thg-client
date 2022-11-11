@@ -4,7 +4,6 @@ import FormWrapper from '../rvnu-components/FormWrapper'
 import Subtitle from '../rvnu-components/Subtitle'
 import HelperText from '../rvnu-components/HelperText'
 import FormButton from '../rvnu-components/Button'
-import Emoji from '../rvnu-components/Emoji'
 import ErrorMsg from '../rvnu-components/ErrorMsg';
 import api from '../utils/api'
 import OtpInput from 'react-otp-input';

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import GroupIcon from '@mui/icons-material/Group';
+import InputAdornment from '@mui/material/InputAdornment';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import FormWrapper from '../rvnu-components/FormWrapper'
 import Subtitle from '../rvnu-components/Subtitle'
 import HelperText from '../rvnu-components/HelperText'
@@ -10,11 +12,13 @@ import TextFieldUser from '../rvnu-components/TextField';
 import api from '../utils/api'
 
 
-export default function EnterRvnuUser({activeStep, setActiveStep}) {
+export default function EnterRvnuUser({activeStep, setActiveStep,                   merchantSaleInfo}) {
 
   // Get Payer AccountID to ensure they do not use their own username. 
   const payerAccount = JSON.parse(localStorage.getItem('payerRvnuAccount'))
   const payerAccountId = payerAccount.AccountID
+  // Set Merchant info vars (coming from RvnuBase.js)
+  const merchantName = merchantSaleInfo.merchantName
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
   // Error messages
@@ -108,17 +112,26 @@ export default function EnterRvnuUser({activeStep, setActiveStep}) {
     /* NOTE ABOUT REDIRECTING TO TRUELAYER */
 
     <FormWrapper>
-      <Subtitle subtitleText={"Enter RVNU username"} >
+      <Subtitle subtitleText={"Enter a RVNU username"} >
         <GroupIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={"Enter the username of the friend or family member than sent you here."} />
+      <HelperText text={`Tell us which RVNU user sent you to ${merchantName}.`} />
 
       <TextFieldUser
         autoFocus
         value={rvnuUserRec}
         onChange={handleChange}
         error={error}
+
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <AlternateEmailIcon />
+            </InputAdornment>
+          ),
+        }}
        />
+      <HelperText text={"Once you've paid, your RVNU username will be validated to share and start earning."} />
 
       <FormButton
       loading={loading}

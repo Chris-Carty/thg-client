@@ -4,7 +4,7 @@ import FormWrapper from '../rvnu-components/FormWrapper'
 import Subtitle from '../rvnu-components/Subtitle'
 import HelperText from '../rvnu-components/HelperText'
 import api from '../utils/api'
-import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgressLoad from '../rvnu-components/CircularProgress';
 
 
 export default function GetPaymentStatus({activeStep, setActiveStep, merchantSaleInfo}) {
@@ -154,7 +154,7 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
         <AssuredWorkloadIcon margin-right={10}/>
       </Subtitle>
       <HelperText text={"Please wait while we get the payment status."} />
-      <LinearProgress color="inherit" />
+      <CircularProgressLoad />
     </FormWrapper>
 
   )

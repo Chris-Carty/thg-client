@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react'
 import FormWrapper from '../rvnu-components/FormWrapper'
+import CircularProgressLoad from '../rvnu-components/CircularProgress';
 import Subtitle from '../rvnu-components/Subtitle'
 import HelperText from '../rvnu-components/HelperText'
-import LinearProgress from '@mui/material/LinearProgress';
 
 
 export default function Filler({activeStep, setActiveStep}) {
-    
   useEffect(() => {
 
     setTimeout(() => {
@@ -17,11 +16,9 @@ export default function Filler({activeStep, setActiveStep}) {
 
   return (
     <FormWrapper>
-      <Subtitle subtitleText={""} >
-      </Subtitle>
-      <HelperText text={""} />
-      <HelperText text={""} />
-      <LinearProgress color="inherit" />
+        <Subtitle />
+        <HelperText />
+        <CircularProgressLoad />
     </FormWrapper>
 
   )
