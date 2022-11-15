@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import styled from 'styled-components'
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import FormButton from '../rvnu-components/Button'
-import ErrorMsg from '../rvnu-components/ErrorMsg';
+import ErrorMsg from '../rvnu-components/text/ErrorMsg';
+import PayByBankInfo from '../rvnu-components/text/PayByBankInfo'
 import api from '../utils/api'
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import MouseOverPopover from '../rvnu-components/text/Popover'
+import FandS from '../rvnu-assets/FandS.svg';
+
 
 
 export default function Redirect({activeStep, setActiveStep, merchantSaleInfo}) {
@@ -21,9 +26,10 @@ export default function Redirect({activeStep, setActiveStep, merchantSaleInfo}) 
 
   // Set Merchant info vars (coming from RvnuBase.js)
   const merchantID = merchantSaleInfo.merchantID
+  const merchantName = merchantSaleInfo.merchantName
   const currency = merchantSaleInfo.currency
   const amount = merchantSaleInfo.amount
-  const reference = merchantSaleInfo.reference
+  const reference = merchantName + '-' + merchantSaleInfo.reference
 
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
@@ -63,8 +69,9 @@ export default function Redirect({activeStep, setActiveStep, merchantSaleInfo}) 
     // Once access token is recieved, generate payment link
     try{
       api
-      .post(`/payment/initiate/${access_token}/${amount}/${currency}/${payerMobile}/${payerName}/${payerAccountID}/${reference}`, {
+      .post(`/payment/initiate/${access_token}/${merchantName}/${amount}/${currency}/${payerMobile}/${payerName}/${payerAccountID}/${reference}`, {
         access_token,
+        merchantName,
         amount,
         currency,
         payerMobile,
@@ -141,19 +148,45 @@ const storeTransaction = async paymentLink => {
 
     /* NOTE ABOUT REDIRECTING TO TRUELAYER */
 
-    <FormWrapper>
-      <Subtitle subtitleText={"Pay by bank"} >
-        <AccountBalanceIcon margin-right={10}/>
-      </Subtitle>
-      <HelperText text={"Simple, secure and instant transfer with our partner TrueLayer."} />
-      <HelperText text={"Choose bank account to pay from in the next step."} />
-      <FormButton
-      loading={loading}
-      onClick={ () => getAccessToken() }
-      >
-      </FormButton>
-      { error ? <ErrorMsg errorText={'Unable to initate payment, please try again.'} /> : <p></p> }
+    <FormWrapper>  
+        <FastAndSimple>
+        <img src={FandS}
+            alt="RVNU Logo" 
+            height="25"
+        />
+        </FastAndSimple>     
+        <Subtitle subtitleText={"Instant Bank Transfer"} >
+            <ElectricBoltIcon margin-right={10}/>
+        </Subtitle>
+        <EducationWrapper>
+          <HelperText text={"Pay via online bank transfer directly from your current account."} />
+          <PayByBankInfo infoText={'One of the most secure ways to pay'} />
+          <PayByBankInfo infoText={'Hassle-free. Connect to your bank without entering data manually'} />
+          <PayByBankInfo infoText={'We accept all major UK banks'} />
+          <MouseOverPopover />
+        </EducationWrapper>
+        <FormButton
+        loading={loading}
+        onClick={ () => getAccessToken() }
+        >
+        </FormButton>
+        { error ? <ErrorMsg errorText={'Unable to initate payment, please try again.'} /> : <p></p> }
     </FormWrapper>
 
   )
 }
+
+const EducationWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 30px 20px 15px 20px;
+  margin: 15px 0px 20px 0px;
+`
+
+const FastAndSimple = styled.section`
+  position: absolute;
+  top: 75px;
+  left: 35px;
+`
