@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgressLoad from '../rvnu-components/CircularProgress';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import clearStorage from '../utils/clearStorage';
 
 
@@ -27,7 +27,7 @@ export default function PaymentFailed({merchantSaleInfo}) {
         <ErrorOutlineIcon />
         </Subtitle>
         <HelperText text={`Please wait while we redirect you to ${merchantName}`} />
-        <LinearProgress color="inherit" />
+        <CircularProgressLoad />
       </FormWrapper>
 
     )

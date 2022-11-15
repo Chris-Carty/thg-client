@@ -10,11 +10,10 @@ import PaymentExecuted from './6_PaymentExecuted';
 import PaymentFailed from './7_PaymentFailed';
 import Filler from './Misc_Filler';
 import SaleInfoHeader from '../rvnu-components/SaleInfoHeader'
+import TsAndCs from '../rvnu-components/text/TsAndCs';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import clearStorage from '../utils/clearStorage';
-
-
 
 // Steps in the RVNU payment flow
 const steps = ['OtpSend', 'OtpVerify', 'EnterRvnuUser', 'Redirect', 'Filler', 'GetPaymentStatus', 'PaymentExecuted'];
@@ -90,7 +89,7 @@ export default function Rvnu() {
     if (step === 0 || step >= 2 ) {
         return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" visibility="hidden" />;
     } else {
-        return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" />;
+        return <ArrowBackIcon onClick={() => setActiveStep(activeStep - 1)} fontSize="small" style={{ color: 'grey' }}/>;
     }
   }
 
@@ -106,15 +105,15 @@ export default function Rvnu() {
     <RvnuContainer>
         <SaleInfoHeader  merchantSaleInfo={merchantSaleInfo} />
         <BodyWindow>
-            <HeaderTwo>
+            <Header>
                {stepBackButton(activeStep)}
                 <IconButton
                   size='small'
                   onClick={() => merchantRedirect()}
                   >
-                  <CloseIcon  size='small' color='black'/>
+                  <CloseIcon  size='small' style={{ color: 'grey' }}/>
                 </IconButton>
-            </HeaderTwo>
+            </Header>
 
             <Body>
                 <React.Fragment>
@@ -131,6 +130,7 @@ export default function Rvnu() {
                     )}
                 </React.Fragment>
             </Body>
+            <TsAndCs />
         </BodyWindow>
     </RvnuContainer>
   )
@@ -147,35 +147,36 @@ const RvnuContainer = styled.section`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-
 `
 
 const BodyWindow = styled.section`
   background: rgba(255,255,255,255);
   font-weight: 200;
-  max-width: 600px;
-  min-width: 600px;
-  max-height: 500px;
-  min-height: 500px;
+  max-width: 500px;
+  min-width: 500px;
+  max-height: 750px;
+  min-height: 750px;
   padding: 20px;
   overflow: hidden;
   box-sizing:border-box;
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
 
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     max-width: 100%;
     min-width: 100%;
-    max-height: 85vh;
-    min-height: 85vh;
-    padding: 0px;
+    max-height: 80vh;
+    min-height: 80vh;
+    padding: 5px;
     overflow-x: hidden !important;
     overflow-y: hidden  !important;
     background: rgba(255,255,255,255);
   }
 `
 
-const HeaderTwo = styled.section`
+const Header = styled.section`
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -187,5 +188,5 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-flex-grow: 1;
+margin-bottom: auto;
 `

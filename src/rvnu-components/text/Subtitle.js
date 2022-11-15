@@ -17,7 +17,7 @@ export default function Subtitle({subtitleText, subtitleIcon, children}) {
 const SubtitleWrapper = styled.h3`
   font-size: 20px;
   font-weight: 200;
-  margin-top: 0;
+  margin-top: 5px;
   display: flex;
 `
 

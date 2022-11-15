@@ -1,8 +1,5 @@
 import React from 'react'
-import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
 import api from '../utils/api'
 import CircularProgressLoad from '../rvnu-components/CircularProgress';
 
@@ -150,11 +147,7 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
   return (
 
     <FormWrapper>
-      <Subtitle subtitleText={"Payment Successfully Initiated"} >
-        <AssuredWorkloadIcon margin-right={10}/>
-      </Subtitle>
-      <HelperText text={"Please wait while we get the payment status."} />
-      <CircularProgressLoad />
+        <CircularProgressLoad />
     </FormWrapper>
 
   )

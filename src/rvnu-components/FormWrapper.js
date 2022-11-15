@@ -12,6 +12,7 @@ export default function FormWrapper({children}) {
 
 // Styled Components
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

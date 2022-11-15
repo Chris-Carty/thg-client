@@ -3,12 +3,12 @@ import GroupIcon from '@mui/icons-material/Group';
 import InputAdornment from '@mui/material/InputAdornment';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import FormButton from '../rvnu-components/Button'
-import ErrorMsg from '../rvnu-components/ErrorMsg';
-import SuccessMsg from '../rvnu-components/SuccessMsg';
-import TextFieldUser from '../rvnu-components/TextField';
+import ErrorMsg from '../rvnu-components/text/ErrorMsg';
+import SuccessMsg from '../rvnu-components/text/SuccessMsg';
+import TextFieldUser from '../rvnu-components/text/TextField';
 import api from '../utils/api'
 
 
@@ -115,7 +115,7 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
       <Subtitle subtitleText={"Enter a RVNU username"} >
         <GroupIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={`Tell us which RVNU user sent you to ${merchantName}.`} />
+      <HelperText text={`Tell us which RVNU user sent you to ${merchantName}. Then you'll be able to share and start earning too.`} />
 
       <TextFieldUser
         autoFocus
@@ -131,7 +131,6 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
           ),
         }}
        />
-      <HelperText text={"Once you've paid, your RVNU username will be validated to share and start earning."} />
 
       <FormButton
       loading={loading}

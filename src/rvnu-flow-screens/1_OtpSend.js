@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import FormButton from '../rvnu-components/Button'
 import api from '../utils/api'
 import 'react-phone-number-input/style.css'
-import PhoneInputCustom from '../rvnu-components/PhoneInput'
-import ErrorMsg from '../rvnu-components/ErrorMsg';
+import PhoneInputCustom from '../rvnu-components/text/PhoneInput'
+import ErrorMsg from '../rvnu-components/text/ErrorMsg';
 
 
 export default function SendOtp({activeStep, setActiveStep}) {
@@ -110,6 +110,7 @@ export default function SendOtp({activeStep, setActiveStep}) {
       </Subtitle>
       <HelperText text={"To secure your payment, we need to verify it’s you. Enter your mobile phone number to get started."} />
       <PhoneInputCustom 
+        error={error}
         value={inputNumber}
         onChange={phone => setInputNumber(phone)}
       />

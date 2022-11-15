@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import SmsIcon from '@mui/icons-material/Sms';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import FormButton from '../rvnu-components/Button'
-import ErrorMsg from '../rvnu-components/ErrorMsg';
+import ErrorMsg from '../rvnu-components/text/ErrorMsg';
 import api from '../utils/api'
 import OtpInput from 'react-otp-input';
 
@@ -12,7 +12,7 @@ import OtpInput from 'react-otp-input';
 export default function VerifyOtp({activeStep, setActiveStep}) {
 
   // Get session vars
-  //const firstName = localStorage.getItem("firstName")
+  const payerName = localStorage.getItem("firstName")
   const phoneNumber = localStorage.getItem("phoneNumber")
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
@@ -108,24 +108,13 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
 
   } 
 
-
-  /*
-  Hey {firstName} <Emoji symbol="👋"/> 
-  <span> </span>
-  enter the 6-digit code sent to: 
-  <span> </span>
-  <span style={{fontWeight: 'bold', color: 'black'}}>
-    {phoneNumber} 
-  </span>.
-  */
-
   return (
 
     <FormWrapper>
       <Subtitle subtitleText={"Verify one-time passcode"} >
         <SmsIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={"Enter the 6-digit code sent to your phone."} />
+      <HelperText text={`Hey ${payerName} 👋 enter the 6-digit code sent to ${phoneNumber}`} />
       <OtpInput
         value={inputOtp}
         onChange={e => setInputOtp(e)}

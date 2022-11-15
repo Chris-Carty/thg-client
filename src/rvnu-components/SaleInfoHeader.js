@@ -38,8 +38,8 @@ const HeaderWindow = styled.section`
   display: flex;
   background: rgba(255,255,255,255);
   font-weight: 200;
-  max-width: 600px;
-  min-width: 600px;
+  max-width: 500px;
+  min-width: 500px;
   max-height: 82px;
   min-height: 82px;
   overflow: hidden;
@@ -48,7 +48,7 @@ const HeaderWindow = styled.section`
   margin-top: 55px;
   margin-bottom: 16px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     max-width: 100%;
     min-width: 100%;
     max-height: 10vh;
@@ -57,6 +57,7 @@ const HeaderWindow = styled.section`
     overflow-x: hidden !important;
     overflow-y: hidden  !important;
     background: rgba(255,255,255,255);
+    margin-top: 0px;
   }
 `
 
@@ -74,7 +75,7 @@ const PaymentInfo = styled.section`
   margin-left: 17px;
   width: 100%;
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     display: flex;
     align-items: start;
     flex-direction: column;
@@ -86,7 +87,7 @@ const Merchant = styled.section`
   display: flex;
   align-items: center;
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     margin-bottom: 10px;
   }
 `
@@ -98,7 +99,7 @@ const Amount = styled.section`
   margin-left: auto;
   margin-right: 17px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     margin-left: 0;
   }
 `

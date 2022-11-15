@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@material-ui/core/IconButton';
 import FormWrapper from '../rvnu-components/FormWrapper'
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 import CountdownTimer from '../rvnu-components/CountdownTimer';
 import clearStorage from '../utils/clearStorage';
 import Socials from '../rvnu-components/Socials';

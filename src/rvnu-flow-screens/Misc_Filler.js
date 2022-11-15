@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import FormWrapper from '../rvnu-components/FormWrapper'
 import CircularProgressLoad from '../rvnu-components/CircularProgress';
-import Subtitle from '../rvnu-components/Subtitle'
-import HelperText from '../rvnu-components/HelperText'
+import Subtitle from '../rvnu-components/text/Subtitle'
+import HelperText from '../rvnu-components/text/HelperText'
 
 
 export default function Filler({activeStep, setActiveStep}) {
