@@ -12,12 +12,13 @@ export default function TsAndCs({...props}) {
   return (
     <TersmWrapper>
         <Text>
-            By continuing you are permitting RVNU to initiate a payment from your bank account. You also agree to our {EndUserTerms} and {PrivacyPolicy}.
+            By continuing you agree to the RVNU {EndUserTerms} and {PrivacyPolicy}.
         </Text>
     </TersmWrapper>
   )
 }
 
+// Styled Components
 const TersmWrapper = styled.section`
   text-align: center;
 `
@@ -29,9 +30,13 @@ const Text = styled.p`
 
 const Link = styled.a`
    text-decoration: none;
+   color: #a45dfc; 
 
-  :visited {
-  color: black;
-}
+   :link {
+      color: #a45dfc; 
+  }
 
+    :visited {
+      color: #a45dfc; 
+  }
 `

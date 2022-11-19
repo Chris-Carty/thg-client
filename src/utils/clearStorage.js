@@ -6,4 +6,5 @@
     localStorage.removeItem('payerRvnuAccount')
     localStorage.removeItem('paymentID')
     localStorage.removeItem('recommenderID')
+    localStorage.removeItem('commissionSmsSent')
   }

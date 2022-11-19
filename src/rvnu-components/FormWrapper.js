@@ -16,13 +16,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0px 20px;
   font-size: 16px;
   font-weight: 200;
-  flex-grow: 1;
   width: 100%;
   box-sizing:border-box;
-  &:nth-child(4) {
-  margin-top: auto !important;
-  }
+
 `

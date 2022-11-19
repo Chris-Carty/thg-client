@@ -4,19 +4,19 @@ import api from '../utils/api'
 import CircularProgressLoad from '../rvnu-components/CircularProgress';
 
 
-export default function GetPaymentStatus({activeStep, setActiveStep, merchantSaleInfo}) {
+export default function GetPaymentStatus({activeStep, setActiveStep, merchantSaleInfo, commissionSmsSent, setCommissionSmsSent}) {
 
-    // Set AccountID of recommender Username used to checkout (from local storage)
+    // Set AccountID of recommender.
     const accountId = localStorage.getItem("recommenderID")
 
-    // Get Payer AccountID to link to transaction. 
+    // Set Details of payer. 
     const payerAccount = JSON.parse(localStorage.getItem('payerRvnuAccount'))
-    const payerFirstName = payerAccount.FirstName
+    const payerFirstname = payerAccount.FirstName
+    const payerLastname = payerAccount.LastName
+    const payerUsername = payerAccount.Username
 
-    // Extract paymentId from callback
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const paymentId = urlParams.get('payment_id')
+    // Set the paymentID
+    const paymentId = localStorage.getItem("paymentID")
 
     if (paymentId) {
 
@@ -25,7 +25,6 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
         }, "2000") 
       
       }
-
 
     // Generate TrueLayer API Access Token
     const getAccessToken = () => {
@@ -64,13 +63,13 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
 
         
             if (paymentStatus === "settled") {
-                setActiveStep(activeStep + 1)
+                getRecommenderAccount()
                 //getRecommenderAccount()
             } else if (paymentStatus === "failed") {
                 setActiveStep(activeStep + 2)
-            } else {
+            } else if (paymentStatus === "executed") {
                 // Call until terminal status is found
-                setTimeout(getPaymentStatus, "3000") 
+                setTimeout(getAccessToken, "3000") 
             }
     
             })
@@ -83,7 +82,7 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
     }
 
 
-    /*
+    
 
     const getRecommenderAccount = async () => {
         // Get account info of user whose RVNU code is used 
@@ -93,17 +92,27 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
             accountId,
           })
           .then(async (response) => {
-            // User whose Username was entered as recommender
-            const recommender = response.data[0]
-            const firstName = recommender.FirstName
-            const lastName = recommender.LastName
-            const mobileNumber = recommender.MobileNumber
-            const email = recommender.Email
-            // Execute functions
-            //sendRvnuCodeUsedSms(firstName, mobileNumber, email, codeUsedBy, rvnuCodeId, paymentId)
+            // Recommender personal details
+            const recommender = response.data.data[0]
+            const recommenderName = recommender.FirstName
+            const recommenderNumber = recommender.MobileNumber
 
-            //updateTotalAssets(accountId, paymentId)
-  
+            // TODO -- Send email too
+            //const recommenderEmail = recommender.Email
+
+            // Payer ( Recommender Username entered by this user)
+            const payerName = `${payerFirstname} ${payerLastname}`
+
+            // Update recommenders Total Assets 
+            updateTotalAssets(accountId, paymentId)
+
+            // Send SMS to recommender, notifying them they've earned commission
+            console.log(commissionSmsSent)
+            if (commissionSmsSent === 0) {
+              sendRvnuCodeUsedSms(recommenderName, recommenderNumber, payerName, payerUsername, paymentId)
+              setCommissionSmsSent(commissionSmsSent + 1)
+            }
+
           })
           .catch((error) => {
             console.log(error)
@@ -114,23 +123,47 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
   
     }
 
-    const sendRvnuCodeUsedSms = async (firstName, mobileNumber, email, codeUsedBy, rvnuCodeId, paymentId) => {
+    // When payment settled status is confirmed
+    // update recommenders Total Assets to reflect comission earned on the sale.
+    const updateTotalAssets = async (accountId, paymentId, rvnuCodeId) => {
+
+        try{
+          api
+          .get(`/user/updateAssets/` + accountId + '/' + paymentId, {
+            accountId,
+            paymentId,
+          })
+          .then(async (response) => {
+            setActiveStep(activeStep + 1)
+          })
+          .catch((error) => {
+            console.log(error)
+            console.log("Error: could not update user asset total.") 
+          })
+        } catch {
+          console.log("Error: could not update user asset total.") 
+        }
+      
+    }
+
+    // Send SMS to Recommender notifying them they've earned some commission
+    const sendRvnuCodeUsedSms = async (recommenderName, recommenderNumber, payerName, payerUsername, paymentId) => {
 
         const merchantName = merchantSaleInfo.merchantName
   
         // Send SMS to user whose RVNU code has been used
         try{
           api
-          .post(`/verify/commissionSms/` + paymentId + '/' + rvnuCodeId + '/' + firstName + '/' + mobileNumber + '/' + email + '/' + codeUsedBy + '/' + merchantName, {
+          .post(`/verify/commissionSms/` + paymentId + '/' + recommenderName + '/' + recommenderNumber + '/' + payerName + '/' + payerUsername + '/' + merchantName, {
             paymentId,
-            firstName,
-            mobileNumber,
-            email,
-            codeUsedBy,
+            recommenderName,
+            recommenderNumber,
+            payerName,
+            payerUsername,
             merchantName
           })
           .then(async (response) => {
-            console.log(response)
+            //console.log(response)
           })
           .catch((error) => {
             console.log(error)
@@ -141,7 +174,6 @@ export default function GetPaymentStatus({activeStep, setActiveStep, merchantSal
   
     }
 
-    */
 
 
   return (

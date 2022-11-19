@@ -34,6 +34,11 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
     setRvnuUserRec(event.target.value);
   };
 
+  // Delay next step to show success message to user
+  const delayLoad = () => {
+    setActiveStep(activeStep + 1)
+  };
+
   useEffect(() => {
     // Remove error text
     setError(false)
@@ -48,13 +53,14 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
     }
   }, [rvnuUserRec]);
 
-  // If OTP lenght equals 6, verfiy it. 
+  // If Username lenght equals >= 6. 
   const isValidUser = () => {
 
     if (rvnuUserRec == null) {
       setError(true)
     } else if (rvnuUserRec.length >= 6) {
-      isRecommenderValid()
+      setLoading(true)
+      setTimeout(isRecommenderValid, 500)
     } else {
       setError(true)
     }
@@ -62,12 +68,11 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
 
   const isRecommenderValid = async () => {
      
-    setLoading(true)
      const username = rvnuUserRec
 
      try{
       api
-      .get(`/user/recommender/` + username, {
+      .get(`/rvnu/recommender/` + username, {
         username,
       })
       .then(async (response) => {
@@ -84,7 +89,7 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
           } else {
             setSuccess(true)
             localStorage.setItem("recommenderID", recommender.AccountID)
-            setActiveStep(activeStep + 1)
+            setTimeout(delayLoad, 1500)
           }
 
         } else {
@@ -115,7 +120,7 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
       <Subtitle subtitleText={"Enter a RVNU username"} >
         <GroupIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={`Tell us which RVNU user sent you to ${merchantName}. Then you'll be able to share and start earning too.`} />
+      <HelperText text={`Tell us which RVNU user sent you to ${merchantName}. You'll soon be sharing and earning too.`} />
 
       <TextFieldUser
         autoFocus
@@ -135,7 +140,8 @@ export default function EnterRvnuUser({activeStep, setActiveStep,               
       <FormButton
       loading={loading}
       isButtonDisabled={isButtonDisabled}
-      buttonText={"Next"}
+      buttonText={"Validate"}
+      disabledButtonText={"Validate"}
       onClick={ () => isValidUser() }
       >
       </FormButton>

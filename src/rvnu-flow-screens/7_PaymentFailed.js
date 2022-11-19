@@ -14,11 +14,18 @@ export default function PaymentFailed({merchantSaleInfo}) {
     const merchantName = merchantSaleInfo.merchantName
 
     useEffect(() => {
-        clearStorage()
         setTimeout(() => {
-            window.open(`${redirectURL}/?$payment_id=${paymentID}`, '_self')
+          merchantRedirect()
         }, "3000") 
     }, []);
+
+    //Redirect back to merchant
+    const merchantRedirect = async () => {
+        clearStorage()
+        window.open(`${redirectURL}/?payment_id=${paymentID}`, '_self')
+    }
+
+    // TODO GET REASON FOR PAYMENT FAILURE and appedn to UTL
 
     return (
 

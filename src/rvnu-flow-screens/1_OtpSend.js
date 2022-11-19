@@ -19,7 +19,7 @@ export default function SendOtp({activeStep, setActiveStep}) {
   // Error messages
   const [error, setError] = useState(false);
   // phoneNumber entered bu user will be in E.164 format.
-  const [inputNumber, setInputNumber] = useState('447527943282');
+  const [inputNumber, setInputNumber] = useState('447508259020');
 
   useEffect(() => {
     // Remove error text
@@ -117,6 +117,7 @@ export default function SendOtp({activeStep, setActiveStep}) {
       <FormButton
         loading={loading}
         isButtonDisabled={isButtonDisabled}
+        disabledButtonText={"Next"}
         buttonText={"Next"}
         onClick={ () =>  checkUserExists() }>
       </FormButton>

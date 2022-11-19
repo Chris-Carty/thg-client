@@ -10,6 +10,7 @@ import api from '../utils/api'
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import MouseOverPopover from '../rvnu-components/text/Popover'
 import FandS from '../rvnu-assets/FandS.svg';
+import BankLogos from '../rvnu-assets/bankLogos.svg';
 
 
 
@@ -97,6 +98,7 @@ export default function Redirect({activeStep, setActiveStep, merchantSaleInfo}) 
 // Make a record of this transaction initiation
 const storeTransaction = async paymentLink => {
 
+
   // Set ID of the Recommender provided by the Payer
   const recommenderID = localStorage.getItem("recommenderID")
 
@@ -154,10 +156,17 @@ const storeTransaction = async paymentLink => {
             alt="RVNU Logo" 
             height="25"
         />
-        </FastAndSimple>     
-        <Subtitle subtitleText={"Instant Bank Transfer"} >
-            <ElectricBoltIcon margin-right={10}/>
-        </Subtitle>
+        </FastAndSimple>  
+        <TitleWrapper>
+          <Subtitle subtitleText={"Instant Bank Transfer"} >
+              <ElectricBoltIcon margin-right={10}/>
+
+          </Subtitle>
+          <img src={BankLogos}
+              alt="RVNU Logo" 
+              height="25"
+          />
+        </TitleWrapper>   
         <EducationWrapper>
           <HelperText text={"Pay via online bank transfer directly from your current account."} />
           <PayByBankInfo infoText={'One of the most secure ways to pay'} />
@@ -166,6 +175,7 @@ const storeTransaction = async paymentLink => {
           <MouseOverPopover />
         </EducationWrapper>
         <FormButton
+        buttonText={"Pay by Bank"}
         loading={loading}
         onClick={ () => getAccessToken() }
         >
@@ -176,6 +186,7 @@ const storeTransaction = async paymentLink => {
   )
 }
 
+// Styled Components
 const EducationWrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -183,10 +194,32 @@ const EducationWrapper = styled.section`
   border-radius: 6px;
   padding: 30px 20px 15px 20px;
   margin: 15px 0px 20px 0px;
+
+  @media (max-width: 500px) {
+    margin: 30px 0px 20px 0px;
+  }
+
 `
 
 const FastAndSimple = styled.section`
   position: absolute;
-  top: 75px;
+  top: 70px;
   left: 35px;
+
+  @media (max-width: 500px) {
+    top: 110px;
+  }
+`
+
+const TitleWrapper = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
 `

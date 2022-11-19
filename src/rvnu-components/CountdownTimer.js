@@ -1,13 +1,12 @@
-// https://github.com/R4M5E5/Video-Tutorial-Code-Countdown-Timer-React.git
 import React, {useState, useEffect} from 'react';
 import {getRemainingTimeUntilMsTimestamp} from '../utils/CountdownTimerHelper';
 import styled from 'styled-components'
 
 const defaultRemainingTime = {
-    seconds: '00',
-    minutes: '00',
-    hours: '00',
-    days: '00'
+    //seconds: '00',
+    //minutes: '00',
+    //hours: '00',
+    days: ''
 }
 
 const CountdownTimer = ({countdownTimestampMs}) => {

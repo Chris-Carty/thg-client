@@ -5,6 +5,7 @@ import Subtitle from '../rvnu-components/text/Subtitle'
 import HelperText from '../rvnu-components/text/HelperText'
 import FormButton from '../rvnu-components/Button'
 import ErrorMsg from '../rvnu-components/text/ErrorMsg';
+import SuccessMsg from '../rvnu-components/text/SuccessMsg';
 import api from '../utils/api'
 import OtpInput from 'react-otp-input';
 
@@ -18,10 +19,13 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
   const [loading, setLoading] = useState(false);
   // Error messages
   const [error, setError] = useState(false);
+  // Success message
+  const [success, setSuccess] = useState(false);
   // OTP Entered must be six digits
   const [inputOtp, setInputOtp] = useState();
   // Disbale button
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
 
   useEffect(() => {
     // Remove error text
@@ -31,10 +35,19 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
         setIsButtonDisabled(true);
     } else if (inputOtp.length === 6) {
         setIsButtonDisabled(false);
+        setLoading(true)
+        // UNCOMMENT FOR PRPDUCTION
+        //verifyOtpCode(inputOtp)
+        setTimeout(getRvnuAccount, 250)
     } else {
         setIsButtonDisabled(true);
     }
   }, [inputOtp]);
+
+  // Delay next step to show success message to user
+  const delayLoad = () => {
+    setActiveStep(activeStep + 1)
+  };
 
   // If OTP lenght equals 6, verfiy it. 
   const isValidOtp = () => {
@@ -59,7 +72,6 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       .then(async (response) => {
         const result = response.data.verification_check.valid
         if (result === true) {
-          console.log("Valid OTP")
           getRvnuAccount()
         } 
       })
@@ -90,7 +102,8 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
         const result = response.data.data
         if (result.length === 1) {
           localStorage.setItem("payerRvnuAccount", JSON.stringify(result[0]))
-          setActiveStep(activeStep + 1)
+          setSuccess(true)
+          setTimeout(delayLoad, 1500)
         } else {
           setLoading(false)
         }
@@ -114,7 +127,7 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       <Subtitle subtitleText={"Verify one-time passcode"} >
         <SmsIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={`Hey ${payerName} 👋 enter the 6-digit code sent to ${phoneNumber}`} />
+      <HelperText text={`Hey ${payerName} 👋 Enter the 6-digit code sent to ${phoneNumber}.`} />
       <OtpInput
         value={inputOtp}
         onChange={e => setInputOtp(e)}
@@ -140,11 +153,13 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       <FormButton
       loading={loading}
       isButtonDisabled={isButtonDisabled}
-      buttonText={"Next"}
+      buttonText={"Verify"}
+      disabledButtonText={"Verify"}
       onClick={ () => getRvnuAccount() }
       >
       </FormButton>
       { error ? <ErrorMsg errorText={'Invalid code, please try again.'} /> : <p></p> }
+      { success ? <SuccessMsg SuccessText={'Verification successful.'} /> : <p></p> }
     </FormWrapper>
 
   )

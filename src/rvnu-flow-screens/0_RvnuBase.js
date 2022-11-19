@@ -11,6 +11,7 @@ import PaymentFailed from './7_PaymentFailed';
 import Filler from './Misc_Filler';
 import SaleInfoHeader from '../rvnu-components/SaleInfoHeader'
 import TsAndCs from '../rvnu-components/text/TsAndCs';
+import PayShareEarn from '../rvnu-components/text/PayShareEarn';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import clearStorage from '../utils/clearStorage';
@@ -35,10 +36,19 @@ export default function Rvnu() {
     Number.isInteger(storedValueAsNumber) ? storedValueAsNumber : 0
   );
 
+  // Set activeStep in RVNU checkout flow
+  const storedSmsValueAsNumber = Number(localStorage.getItem('commissionSmsSent'));
+  const [commissionSmsSent, setCommissionSmsSent] = useState(
+    Number.isInteger(storedSmsValueAsNumber) ? storedSmsValueAsNumber : 0
+  );
+  
+
   // Store step in RVNU flow in local storage
   useEffect(() => {
     localStorage.setItem("activeStep", String(activeStep))
-  }, [activeStep]);
+    // Prevent resending of Commission SMS in GetStatus.js
+    localStorage.setItem("commissionSmsSent", String(commissionSmsSent))
+  }, [activeStep, commissionSmsSent]);
 
   // Determine which Component to render depending on which activeStep the user is at in the RVNU flow
   const getStepContent = (step) => {
@@ -73,7 +83,9 @@ export default function Rvnu() {
       case 5:
         return <GetPaymentStatus
                   activeStep={activeStep}
-                  setActiveStep={setActiveStep} 
+                  setActiveStep={setActiveStep}
+                  commissionSmsSent={commissionSmsSent}
+                  setCommissionSmsSent={setCommissionSmsSent}  
                   merchantSaleInfo={merchantSaleInfo}
               />;
       case 6:
@@ -99,11 +111,15 @@ export default function Rvnu() {
       clearStorage()
       window.open(`${merchantSaleInfo.redirectURL}/?user_cancelled=${'1234'}`, '_self')
   }
-
+  
 
   return (
     <RvnuContainer>
+        { activeStep === 6 ? (
+        <SaleInfoHeader  finalScreen={true} merchantSaleInfo={merchantSaleInfo} />
+        ) : (
         <SaleInfoHeader  merchantSaleInfo={merchantSaleInfo} />
+        )}
         <BodyWindow>
             <Header>
                {stepBackButton(activeStep)}
@@ -130,6 +146,7 @@ export default function Rvnu() {
                     )}
                 </React.Fragment>
             </Body>
+            <PayShareEarn />
             <TsAndCs />
         </BodyWindow>
     </RvnuContainer>
@@ -164,7 +181,7 @@ const BodyWindow = styled.section`
   flex-direction: column;
 
 
-  @media (max-width: 750px) {
+  @media (max-width: 500px) {
     max-width: 100%;
     min-width: 100%;
     max-height: 80vh;
