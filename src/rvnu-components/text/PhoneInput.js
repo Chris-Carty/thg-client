@@ -12,20 +12,17 @@ const Wrapper = ({ className, ...props }) => (
 
 const Phone = styled(Wrapper)`
     #phone-input {
-        margin: 20px 0px;
+        margin: 5px 0px;
         width: 100% !important;
-        font-size: 17px;
+        height: 56px;
+        font-size: 16px;
         color: black !important;
         font-family: 'DM Sans' !important;
-        border: 1.5px solid rgba(0,0,0,0.9) !important;
-        {/*border-bottom: 2px solid black !important;
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
-        border-radius: 0px !important;*/}
+        border: 1px solid grey !important;
         outline: none !important;
         &:focus {
             box-shadow: 0px 0px 0px;
+            border: 1px solid rgba(0,0,0,1);
         }
     }
 `;
@@ -40,8 +37,7 @@ export default function PhoneInputCustom({...props }) {
         enableSearch={true}
         countryCodeEditable={false}
         inputProps={{
-              id: "phone-input",
-              autoFocus: true,
+              id: "phone-input"
             }}  
         country={'gb'}
         regions={'europe'}

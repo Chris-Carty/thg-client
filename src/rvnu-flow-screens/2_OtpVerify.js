@@ -13,8 +13,9 @@ import OtpInput from 'react-otp-input';
 export default function VerifyOtp({activeStep, setActiveStep}) {
 
   // Get session vars
-  const payerName = localStorage.getItem("firstName")
-  const phoneNumber = localStorage.getItem("phoneNumber")
+  const payerName = localStorage.getItem("Firstname")
+  const phoneNumber = localStorage.getItem("Mobile")
+  const phoneNumPriv = "+*********" + phoneNumber.slice(-4)
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
   // Error messages
@@ -37,8 +38,10 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
         setIsButtonDisabled(false);
         setLoading(true)
         // UNCOMMENT FOR PRPDUCTION
-        //verifyOtpCode(inputOtp)
-        setTimeout(getRvnuAccount, 250)
+        //isValidOtp(inputOtp)
+        setSuccess(true)
+        setTimeout(delayLoad, 500)
+  
     } else {
         setIsButtonDisabled(true);
     }
@@ -46,6 +49,7 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
 
   // Delay next step to show success message to user
   const delayLoad = () => {
+    setLoading(false)
     setActiveStep(activeStep + 1)
   };
 
@@ -72,8 +76,14 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       .then(async (response) => {
         const result = response.data.verification_check.valid
         if (result === true) {
-          getRvnuAccount()
-        } 
+          // OTP SUCCESS
+          setSuccess(true)
+          setTimeout(delayLoad, 350)
+
+        } else {
+          setError(true)
+          setLoading(false)
+        }
       })
       .catch((error) => {
         setError(true)
@@ -88,46 +98,13 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
 
 }
 
-  
-  const getRvnuAccount = async () => {
-
-    const num = phoneNumber
-
-     try{
-      api
-      .get(`/user/getUserRvnuAccount/` + num, {
-        num,
-      })
-      .then(async (response) => {
-        const result = response.data.data
-        if (result.length === 1) {
-          localStorage.setItem("payerRvnuAccount", JSON.stringify(result[0]))
-          setSuccess(true)
-          setTimeout(delayLoad, 1500)
-        } else {
-          setLoading(false)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-        setError(true)
-        setLoading(false)
-      })
-    } catch {
-        setError(true)
-        setLoading(false)
-        console.log("Error: could not verify") 
-    }
-
-  } 
-
   return (
 
     <FormWrapper>
-      <Subtitle subtitleText={"Verify one-time passcode"} >
+      <Subtitle subtitleText={"Enter your SMS code"} >
         <SmsIcon margin-right={10}/>
       </Subtitle>
-      <HelperText text={`Hey ${payerName} 👋 Enter the 6-digit code sent to ${phoneNumber}.`} />
+      <HelperText text={`Hey ${payerName} 👋 We've sent it to ${phoneNumPriv}.`} />
       <OtpInput
         value={inputOtp}
         onChange={e => setInputOtp(e)}
@@ -155,11 +132,11 @@ export default function VerifyOtp({activeStep, setActiveStep}) {
       isButtonDisabled={isButtonDisabled}
       buttonText={"Verify"}
       disabledButtonText={"Verify"}
-      onClick={ () => getRvnuAccount() }
+      onClick={ () => isValidOtp() }
       >
       </FormButton>
       { error ? <ErrorMsg errorText={'Invalid code, please try again.'} /> : <p></p> }
-      { success ? <SuccessMsg SuccessText={'Verification successful.'} /> : <p></p> }
+      { success ? <SuccessMsg SuccessText={'Verification successful'} /> : <p></p> }
     </FormWrapper>
 
   )

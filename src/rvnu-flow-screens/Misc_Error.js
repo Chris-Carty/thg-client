@@ -11,12 +11,6 @@ export default function ErrorScreen({activeStep, setActiveStep}) {
   return (
     <RvnuContainer>
             <FormWrapper>
-            <Header>
-                <img src={require('../rvnu-assets/RVNU-black.png')}
-                    alt="RVNU Logo" 
-                    height="12"
-                />
-            </Header>
             <Subtitle subtitleText={"404. That's an error."} >
                 <SentimentVeryDissatisfiedIcon />
             </Subtitle>

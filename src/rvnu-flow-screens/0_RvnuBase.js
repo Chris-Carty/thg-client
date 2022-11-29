@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import OtpSend from './1_OtpSend';
-import OtpVerify from './2_OtpVerify';
-import EnterRvnuUser from './3_EnterRvnuUser';
-import Redirect from './4_Redirect';
-import GetPaymentStatus from './5_GetPaymentStatus';
-import PaymentExecuted from './6_PaymentExecuted';
-import PaymentFailed from './7_PaymentFailed';
-import Filler from './Misc_Filler';
-import SaleInfoHeader from '../rvnu-components/SaleInfoHeader'
+import Form from './1_Form';
+import VerifyOtp from './2_OtpVerify';
+import Username from './3_Username';
+import BankDetails from './4_BankDetails';
+import ComingSoon from './5_ComingSoon';
 import TsAndCs from '../rvnu-components/text/TsAndCs';
 import PayShareEarn from '../rvnu-components/text/PayShareEarn';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import HomeIcon from '@mui/icons-material/Home';
 import clearStorage from '../utils/clearStorage';
 
 // Steps in the RVNU payment flow
-const steps = ['OtpSend', 'OtpVerify', 'EnterRvnuUser', 'Redirect', 'Filler', 'GetPaymentStatus', 'PaymentExecuted'];
+const steps = ['Form', 'OtpVerify', 'BankDetails', 'ComingSoon'];
 
 export default function Rvnu() {
-
-  const merchantSaleInfo = {
-    merchantID: '41784630-695b-4003-9588-89b322b59ac2',
-    merchantName: 'ASOS',
-    currency: 'GBP',
-    amount: 79.26,
-    reference: 'Merchant-X-1234',
-    redirectURL: 'http://localhost:3000'
-  }
 
   // Set activeStep in RVNU checkout flow
   const storedValueAsNumber = Number(localStorage.getItem('activeStep'));
@@ -36,61 +23,33 @@ export default function Rvnu() {
     Number.isInteger(storedValueAsNumber) ? storedValueAsNumber : 0
   );
 
-  // Set activeStep in RVNU checkout flow
-  const storedSmsValueAsNumber = Number(localStorage.getItem('commissionSmsSent'));
-  const [commissionSmsSent, setCommissionSmsSent] = useState(
-    Number.isInteger(storedSmsValueAsNumber) ? storedSmsValueAsNumber : 0
-  );
-  
-
   // Store step in RVNU flow in local storage
   useEffect(() => {
     localStorage.setItem("activeStep", String(activeStep))
-    // Prevent resending of Commission SMS in GetStatus.js
-    localStorage.setItem("commissionSmsSent", String(commissionSmsSent))
-  }, [activeStep, commissionSmsSent]);
+  }, [activeStep]);
 
   // Determine which Component to render depending on which activeStep the user is at in the RVNU flow
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <OtpSend 
+        return <Form 
                   activeStep={activeStep} 
                   setActiveStep={setActiveStep} 
                 />;
       case 1:
-        return <OtpVerify 
+        return <VerifyOtp
                   activeStep={activeStep}
                   setActiveStep={setActiveStep} 
-                />;
-      case 2:
-        return <EnterRvnuUser
-                  activeStep={activeStep}
-                  setActiveStep={setActiveStep} 
-                  merchantSaleInfo={merchantSaleInfo}
                />;
-      case 3:
-        return <Redirect
+      case 2:
+      return <Username
                 activeStep={activeStep}
                 setActiveStep={setActiveStep} 
-                merchantSaleInfo={merchantSaleInfo}
               />;
-      case 4:
-        return <Filler
+      case 3:
+        return <BankDetails
                   activeStep={activeStep}
                   setActiveStep={setActiveStep} 
-                />;
-      case 5:
-        return <GetPaymentStatus
-                  activeStep={activeStep}
-                  setActiveStep={setActiveStep}
-                  commissionSmsSent={commissionSmsSent}
-                  setCommissionSmsSent={setCommissionSmsSent}  
-                  merchantSaleInfo={merchantSaleInfo}
-              />;
-      case 6:
-        return <PaymentExecuted
-                  merchantSaleInfo={merchantSaleInfo} 
               />;
       default:
         throw new Error('Unknown step');
@@ -109,17 +68,12 @@ export default function Rvnu() {
   // TODO APPEND UNIQUE ID TO THIS CHECKOUT FLOW (RECORD THIS IN A TABLE IN DB)
   const merchantRedirect = async () => {
       clearStorage()
-      window.open(`${merchantSaleInfo.redirectURL}/?user_cancelled=${'1234'}`, '_self')
+      window.open(`http://localhost:3001`, '_self')
   }
   
 
   return (
     <RvnuContainer>
-        { activeStep === 6 ? (
-        <SaleInfoHeader  finalScreen={true} merchantSaleInfo={merchantSaleInfo} />
-        ) : (
-        <SaleInfoHeader  merchantSaleInfo={merchantSaleInfo} />
-        )}
         <BodyWindow>
             <Header>
                {stepBackButton(activeStep)}
@@ -127,7 +81,8 @@ export default function Rvnu() {
                   size='small'
                   onClick={() => merchantRedirect()}
                   >
-                  <CloseIcon  size='small' style={{ color: 'grey' }}/>
+                  <HomeIcon  size='small' style={{ color: 'grey' }}/>
+                  
                 </IconButton>
             </Header>
 
@@ -135,8 +90,7 @@ export default function Rvnu() {
                 <React.Fragment>
                     {activeStep === steps.length ? (
                     <React.Fragment>
-                    <PaymentFailed
-                        merchantSaleInfo={merchantSaleInfo} 
+                    <ComingSoon
                     />
                     </React.Fragment>
                     ) : (
@@ -147,7 +101,6 @@ export default function Rvnu() {
                 </React.Fragment>
             </Body>
             <PayShareEarn />
-            <TsAndCs />
         </BodyWindow>
     </RvnuContainer>
   )
@@ -163,6 +116,7 @@ const RvnuContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
 `
 
@@ -184,8 +138,8 @@ const BodyWindow = styled.section`
   @media (max-width: 500px) {
     max-width: 100%;
     min-width: 100%;
-    max-height: 80vh;
-    min-height: 80vh;
+    max-height: 100vh;
+    min-height: 100vh;
     padding: 5px;
     overflow-x: hidden !important;
     overflow-y: hidden  !important;

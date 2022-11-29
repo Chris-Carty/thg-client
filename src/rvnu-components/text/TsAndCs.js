@@ -9,10 +9,12 @@ export default function TsAndCs({...props}) {
 
   const PrivacyPolicy = <Link href="XXX">Privacy Policy</Link>
 
+  const CookieUse = <Link href="XXX">Cookie Use</Link>
+
   return (
     <TersmWrapper>
         <Text>
-            By continuing you agree to the RVNU {EndUserTerms} and {PrivacyPolicy}.
+            By signing up, you agree to the {EndUserTerms} and {PrivacyPolicy}, including {CookieUse}.
         </Text>
     </TersmWrapper>
   )
@@ -20,11 +22,10 @@ export default function TsAndCs({...props}) {
 
 // Styled Components
 const TersmWrapper = styled.section`
-  text-align: center;
 `
 
 const Text = styled.p`
- font-size: 10px;
+ font-size: 12px;
  color: grey;
 `
 
