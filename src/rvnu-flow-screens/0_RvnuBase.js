@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Form from './1_Form';
-import VerifyOtp from './2_OtpVerify';
-import Username from './3_Username';
-import BankDetails from './4_BankDetails';
-import ComingSoon from './5_ComingSoon';
+import OrderSuccess from './2_OrderSuccess';
+import OrderFailed from './3_OrderFailed';
 import TsAndCs from '../rvnu-components/text/TsAndCs';
 import PayShareEarn from '../rvnu-components/text/PayShareEarn';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,7 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import clearStorage from '../utils/clearStorage';
 
 // Steps in the RVNU payment flow
-const steps = ['Form', 'OtpVerify', 'BankDetails', 'ComingSoon'];
+const steps = ['Form', 'OrderSuccess', 'OrderFailed'];
 
 export default function Rvnu() {
 
@@ -37,20 +35,10 @@ export default function Rvnu() {
                   setActiveStep={setActiveStep} 
                 />;
       case 1:
-        return <VerifyOtp
+        return <OrderSuccess
                   activeStep={activeStep}
                   setActiveStep={setActiveStep} 
                />;
-      case 2:
-      return <Username
-                activeStep={activeStep}
-                setActiveStep={setActiveStep} 
-              />;
-      case 3:
-        return <BankDetails
-                  activeStep={activeStep}
-                  setActiveStep={setActiveStep} 
-              />;
       default:
         throw new Error('Unknown step');
     }
@@ -90,7 +78,7 @@ export default function Rvnu() {
                 <React.Fragment>
                     {activeStep === steps.length ? (
                     <React.Fragment>
-                    <ComingSoon
+                    <OrderFailed
                     />
                     </React.Fragment>
                     ) : (
