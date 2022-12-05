@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function FormButton({isButtonDisabled, buttonText, disabledButtonText, loading, ...props}) {
+export default function FormButton({ buttonText, disabledButtonText, loading, ...props}) {
 
   const theme = createTheme({
     typography: {
@@ -20,16 +20,6 @@ export default function FormButton({isButtonDisabled, buttonText, disabledButton
 
   return (
     <ThemeProvider theme={theme}>
-    { isButtonDisabled ? 
-      <Button
-        style={{
-          borderRadius: 4,
-          marginTop: "20px",
-          color: "white"
-        }} 
-        variant="contained"
-        disabled
-    >{disabledButtonText}</Button> : 
      <Button
       id="verify" 
       style={{
@@ -40,7 +30,6 @@ export default function FormButton({isButtonDisabled, buttonText, disabledButton
         variant="contained"
         {...props}
     >{ loading ? <CircularProgress size={'28px'} style={{'color': 'white'}}/> : buttonText }</Button>
-    }
   </ThemeProvider>
   )
 }

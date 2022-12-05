@@ -7,7 +7,7 @@ export default function PayByBankInfo({infoText}) {
 
     return (
         <InfoWrap>
-            <CheckCircleIcon  />
+            <CheckCircleIcon sx={{height: 16}}  />
             <Text>
             {infoText}
             </Text>
@@ -18,11 +18,11 @@ export default function PayByBankInfo({infoText}) {
   const InfoWrap = styled.section`
   display: flex;
   align-items: center;
-  margin: 5px 0 0 0;
+  margin: 10px 0 0 0;
 `
 
 const Text = styled.p`
   font-size: 14px;
   margin-left: 20px;
-  margin: 5px 0px 5px 20px;
+  margin: 0px 0px 0px 10px;
 `
