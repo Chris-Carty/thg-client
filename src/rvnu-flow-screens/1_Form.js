@@ -41,10 +41,8 @@ export default function Form({activeStep, setActiveStep}) {
   const delayLoad = () => {
       setLoading(true)
     if (amount >= 0.25 && payer.length > 0) {
-      //setTimeout(initiatePayment, 350)
-      console.log(amount)
-      console.log(payer)
-      setLoading(false)
+
+      setTimeout(initiatePayment, 350)
 
     } else if (amount < 0.25 && payer.length > 0) {
 
@@ -71,7 +69,9 @@ export default function Form({activeStep, setActiveStep}) {
   }
 
   const initiatePayment = async () => {
-    setLoading(true)
+      console.log(amount)
+      console.log(payer)
+      setLoading(false)
   }
 
 

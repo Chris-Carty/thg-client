@@ -32,9 +32,6 @@ export default function ErrorScreen({activeStep, setActiveStep}) {
 }
 
 // Styled Components
-const Header = styled.section`
-margin-bottom: 50px;
-`
 
 const RvnuContainer = styled.section`
   max-width: 100vw;
