@@ -1,16 +1,20 @@
 /* @import url(https://fonts.googleapis.com/css2?family=DM+Sans); */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 
 @font-face {
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   font-style: normal;
   font-weight: 400;
-  src: url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.ttf') format('truetype'), url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff') format('woff'), url('../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff2') format('woff2');
+  src: url("../rvnu-assets/fonts/DM_Sans/DMSans-Regular.ttf") format("truetype"),
+    url("../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff") format("woff"),
+    url("../rvnu-assets/fonts/DM_Sans/DMSans-Regular.woff2") format("woff2");
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   /*font-family: Montserrat, sans-serif;*/
   letter-spacing: 0.4000000059604645px;
   font-weight: 400;

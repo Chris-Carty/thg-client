@@ -1,13 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-export default function FormWrapper({children}) {
-
-  return (
-     <Wrapper>
-        {children}
-     </Wrapper>
-  )
+export default function FormWrapper({ children }) {
+  return <Wrapper>{children}</Wrapper>;
 }
 
 // Styled Components
@@ -20,6 +15,5 @@ const Wrapper = styled.div`
   font-size: 16px;
   font-weight: 200;
   width: 100%;
-  box-sizing:border-box;
-
-`
+  box-sizing: border-box;
+`;
