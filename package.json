@@ -1,5 +1,5 @@
 {
-  "name": "rvnu-checkout-client",
+  "name": "rvnu-uat-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

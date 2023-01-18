@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Form from "./1_Form";
-import OrderSuccess from "./2_OrderSuccess";
-import OrderFailed from "./3_OrderFailed";
 import FootShopLogo from "../rvnu-assets/Foot-Shop-logo.png";
-
-// Steps in the RVNU payment flow
-const steps = ["Form", "OrderSuccess", "OrderFailed"];
 
 export default function Rvnu() {
   // Set activeStep in RVNU checkout flow
-  const storedValueAsNumber = Number(localStorage.getItem("activeStep"));
-  const [activeStep, setActiveStep] = useState(
-    Number.isInteger(storedValueAsNumber) ? storedValueAsNumber : 0
-  );
+  const [activeStep, setActiveStep] = useState(0);
 
   // Store step in RVNU flow in local storage
   useEffect(() => {
@@ -24,11 +16,7 @@ export default function Rvnu() {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <Form activeStep={activeStep} setActiveStep={setActiveStep} />;
-      case 1:
-        return (
-          <OrderSuccess activeStep={activeStep} setActiveStep={setActiveStep} />
-        );
+        return <Form />;
       default:
         throw new Error("Unknown step");
     }
@@ -41,15 +29,7 @@ export default function Rvnu() {
           <img src={FootShopLogo} alt="RVNU Logo" height="70" />
         </Header>
         <Body>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <OrderFailed />
-              </React.Fragment>
-            ) : (
-              <React.Fragment>{getStepContent(activeStep)}</React.Fragment>
-            )}
-          </React.Fragment>
+          <React.Fragment>{getStepContent(activeStep)}</React.Fragment>
         </Body>
       </BodyWindow>
     </RvnuContainer>

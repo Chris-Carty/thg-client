@@ -6,12 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import BoltIcon from "@mui/icons-material/Bolt";
 import RvnuLogo from "../rvnu-assets/RVNU-white.png";
 
-export default function ButtonRvnuPay({
-  buttonText,
-  disabledButtonText,
-  loading,
-  ...props
-}) {
+export default function ButtonRvnuPay({ buttonText, loading, ...props }) {
   const theme = createTheme({
     typography: {
       button: {

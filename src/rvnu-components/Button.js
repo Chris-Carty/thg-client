@@ -3,12 +3,7 @@ import { Button } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function FormButton({
-  buttonText,
-  disabledButtonText,
-  loading,
-  ...props
-}) {
+export default function FormButton({ buttonText, loading, ...props }) {
   const theme = createTheme({
     typography: {
       button: {
