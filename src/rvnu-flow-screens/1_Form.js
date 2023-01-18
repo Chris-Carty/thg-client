@@ -108,33 +108,40 @@ export default function Form() {
         </MockMerchant>
       </MockMerchantWrap>
 
-      <TextFieldUser
-        id="firstName"
-        label="Your full name"
-        placeholder="Jane Doe"
-        autoComplete="given-name"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        value={payerName}
-        onChange={(e) => setPayerName(e.target.value)}
-        error={errorName}
-      />
-      <TextFieldUser
-        type="number"
-        label="Amount (£1.00 min)"
-        placeholder="1.00"
-        value={paymentAmount}
-        onChange={(e) => setPaymentAmount(e.target.value)}
-        error={errorAmount}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <CurrencyPoundIcon sx={{ height: 18 }} />
-            </InputAdornment>
-          ),
-        }}
-      />
+      <TextFieldWrap>
+        <TextFieldGrow>
+          <TextFieldUser
+            id="firstName"
+            label="Your full name"
+            placeholder="Jane Doe"
+            autoComplete="given-name"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={payerName}
+            onChange={(e) => setPayerName(e.target.value)}
+            error={errorName}
+          />
+        </TextFieldGrow>
+
+        <TextFieldShrink>
+          <TextFieldUser
+            type="number"
+            label="Amount (£1.00 min)"
+            placeholder="1.00"
+            value={paymentAmount}
+            onChange={(e) => setPaymentAmount(e.target.value)}
+            error={errorAmount}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <CurrencyPoundIcon sx={{ height: 18 }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </TextFieldShrink>
+      </TextFieldWrap>
 
       <ButtonRvnuPay
         loading={loading}
@@ -183,4 +190,25 @@ const BoldText = styled.a`
   font-weight: 700;
   color: black;
   font-size: 14px;
+`;
+
+const TextFieldWrap = styled.section`
+  display: flex;
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
+`;
+
+const TextFieldGrow = styled.section`
+  flex-grow: 1;
+`;
+
+const TextFieldShrink = styled.section`
+  width: 150px;
+  margin-left: 10px;
+
+  @media (max-width: 400px) {
+    margin-left: 0px;
+    width: 100%;
+  }
 `;
