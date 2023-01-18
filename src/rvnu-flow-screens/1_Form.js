@@ -9,14 +9,16 @@ import CurrencyPoundIcon from "@mui/icons-material/CurrencyPound";
 import ButtonRvnuPay from "../rvnu-components/ButtonRvnuPay";
 import api from "../utils/api";
 
-export default function Form({ activeStep, setActiveStep }) {
+export default function Form() {
+  // CONFIG
+  const clientId = "94ff854c-5015-4f15-9ff5-43106b4d0b7a";
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
   // Error Button Styling
   const [errorName, setErrorName] = useState(false);
   const [errorAmount, setErrorAmount] = useState(false);
   // Required From Fields
-  const [paymentAmount, setPaymentAmount] = useState(0.5);
+  const [paymentAmount, setPaymentAmount] = useState(1.0);
   const [payerName, setPayerName] = useState("");
 
   useEffect(() => {
@@ -27,54 +29,59 @@ export default function Form({ activeStep, setActiveStep }) {
 
   const delayLoad = () => {
     setLoading(true);
-    if (paymentAmount >= 0.5 && payerName.length > 0) {
-      setTimeout(initiatePayment, 350);
-    } else if (paymentAmount < 0.5 && payerName.length > 0) {
+    setTimeout(verifyForm, 800);
+  };
+
+  const verifyForm = () => {
+    if (paymentAmount >= 1.0 && payerName.length > 0) {
+      initiatePayment();
+    } else if (paymentAmount < 1.0 && payerName.length > 0) {
       setErrorAmount(true);
       setLoading(false);
-    } else if (paymentAmount < 0.5 && payerName.length === 0) {
+    } else if (paymentAmount < 1.0 && payerName.length === 0) {
       setErrorAmount(true);
       setErrorName(true);
       setLoading(false);
-    } else if (paymentAmount >= 0.5 && payerName.length === 0) {
+    } else if (paymentAmount >= 1.0 && payerName.length === 0) {
       setErrorName(true);
       setLoading(false);
     }
   };
 
   const initiatePayment = async () => {
-    console.log(paymentAmount);
-    console.log(payerName);
-    setLoading(false);
+    setLoading(true);
 
-    /*
-  
-    const clientId = '94ff854c-5015-4f15-9ff5-43106b4d0b7a'
-    const currency = 'GBP'
-    const reference = `Test-${payerName}-${paymentAmount}`
-  
+    const currency = "GBP";
+    const reference = `uat-test-${payerName}`;
+
     try {
       api
-        .post(`/payment/requests/${clientId}/${payerName}/${currency}/${paymentAmount}/${reference}`, {
-          clientId,
-          payerName,
-          currency,
-          paymentAmount,
-          reference,
-        })
+        .post(
+          `/payments/requests/${clientId}/${payerName}/${currency}/${paymentAmount}/${reference}`,
+          {
+            clientId,
+            payerName,
+            currency,
+            paymentAmount,
+            reference,
+          }
+        )
         .then(async (response) => {
-          // RESPOND WITH PAYMENT REQUEST ID
-          // 200 status. 
-          console.log(response)
+          const paymentRequestId = response.data.paymentRequestId;
+          // Use PaymentRequestId to generate RVNU payment URL.
+          const rvnuPaymentLink = `https://rvnu.app/pay?client_id=${clientId}&payment_request_id=${paymentRequestId}`;
+          // Redirect the user to this payment URL.
+          window.open(rvnuPaymentLink, "_self");
+          setLoading(false);
         })
         .catch((error) => {
+          setLoading(false);
           console.log(error);
         });
     } catch {
+      setLoading(false);
       console.log("Error updating session mobile number");
     }
-
-    */
   };
 
   const rvnuText = <BoldText>RVNU</BoldText>;
@@ -115,8 +122,8 @@ export default function Form({ activeStep, setActiveStep }) {
       />
       <TextFieldUser
         type="number"
-        label="Amount (£0.50 min)"
-        placeholder="0.50"
+        label="Amount (£1.00 min)"
+        placeholder="1.00"
         value={paymentAmount}
         onChange={(e) => setPaymentAmount(e.target.value)}
         error={errorAmount}
@@ -129,7 +136,10 @@ export default function Form({ activeStep, setActiveStep }) {
         }}
       />
 
-      <ButtonRvnuPay onClick={() => delayLoad()}></ButtonRvnuPay>
+      <ButtonRvnuPay
+        loading={loading}
+        onClick={() => delayLoad()}
+      ></ButtonRvnuPay>
     </FormWrapper>
   );
 }
