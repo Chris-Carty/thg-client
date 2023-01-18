@@ -23,7 +23,7 @@ export default function Rvnu() {
       getPaymentStatus(payment_id);
     } else {
       // If no paymentId in URL, restart demo.
-      window.open("http://localhost:3001", "_self");
+      window.open("https://rvnu-demo.app", "_self");
     }
   }, []);
 
