@@ -8,7 +8,7 @@ import Dunk from "../rvnu-assets/dunk.jpg";
 export default function OrderSuccess({ paymentStatus }) {
   //Reset demo
   const reset = async () => {
-    window.open("http://localhost:3001", "_self");
+    window.open("https://rvnu-demo.app", "_self");
   };
 
   return (
