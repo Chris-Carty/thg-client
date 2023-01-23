@@ -70,11 +70,11 @@ const HeadlineWrap = styled.div`
   display: flex;
   align-items: center;
   color: white;
+  margin-left: 4px;
 `;
 
 const Text = styled.p`
   color: white;
-  margin-right: 2px;
   padding: 0px;
   margin: 0px;
 `;

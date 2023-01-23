@@ -92,7 +92,7 @@ export default function Form() {
     <FormWrapper>
       <Text>
         Welcome to the {rvnuText} user acceptance testing space. You will make a{" "}
-        {realPayment} using Open Banking.
+        {realPayment} using your online banking app, no card details required.
       </Text>
 
       <MockMerchantWrap>

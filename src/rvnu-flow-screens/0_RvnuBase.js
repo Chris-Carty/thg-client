@@ -7,11 +7,6 @@ export default function Rvnu() {
   // Set activeStep in RVNU checkout flow
   const [activeStep, setActiveStep] = useState(0);
 
-  // Store step in RVNU flow in local storage
-  useEffect(() => {
-    localStorage.setItem("activeStep", String(activeStep));
-  }, [activeStep]);
-
   // Determine which Component to render depending on which activeStep the user is at in the RVNU flow
   const getStepContent = (step) => {
     switch (step) {
