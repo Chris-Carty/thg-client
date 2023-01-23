@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "./1_Form";
-import FootShopLogo from "../rvnu-assets/Foot-Shop-logo.png";
+import RvnuLogo from "../rvnu-assets/RVNU-black.png";
 
 export default function Rvnu() {
   // Set activeStep in RVNU checkout flow
@@ -21,7 +21,7 @@ export default function Rvnu() {
     <RvnuContainer>
       <BodyWindow>
         <Header>
-          <img src={FootShopLogo} alt="RVNU Logo" height="70" />
+          <img src={RvnuLogo} alt="RVNU Logo" height="15" />
         </Header>
         <Body>
           <React.Fragment>{getStepContent(activeStep)}</React.Fragment>
@@ -74,6 +74,7 @@ const Header = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 const Body = styled.section`

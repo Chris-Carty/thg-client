@@ -13,11 +13,19 @@ export default function OrderSuccess({ paymentStatus }) {
 
   return (
     <FormWrapper>
-      <SaleTextHeader>{`Order ${paymentStatus}`}</SaleTextHeader>
-      <HelperText text={`Your order number: 12345.`} />
-      <SaleImgWrap>
-        <img src={Dunk} alt="Nike Dunk Shoe" width="180" />
-      </SaleImgWrap>
+      <Text>
+        Thanks for testing the RVNU payment experience. Please reach out to
+        Chris or Jack and share your feedback!
+      </Text>
+      <MockMerchantWrap>
+        <TextHeader>DEMO MERCHANT</TextHeader>
+        <SaleTextHeader>{`Order ${paymentStatus}`}</SaleTextHeader>
+        <MockMerchant>
+          <SaleImgWrap>
+            <img src={Dunk} alt="Nike Dunk Shoe" width="150" />
+          </SaleImgWrap>
+        </MockMerchant>
+      </MockMerchantWrap>
       <FormButton
         buttonText={"Reset Demo"}
         onClick={() => reset()}
@@ -36,5 +44,31 @@ const SaleTextHeader = styled.p`
 const SaleImgWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 0px;
+  margin: 10px 0px 20px 0px;
+`;
+
+const Text = styled.p`
+  color: dark-grey;
+  font-size: 14px;
+  margin: 30px 0px;
+`;
+
+const MockMerchant = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  align-content: space-between;
+`;
+
+const MockMerchantWrap = styled.div`
+  padding-top: 10px;
+  border-top: 0.5px solid lightgrey;
+`;
+
+const TextHeader = styled.p`
+  margin: 20px 0 10px 0;
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-size: 16px;
 `;

@@ -94,8 +94,8 @@ export default function Form() {
         Welcome to the {rvnuText} user acceptance testing space. You will make a{" "}
         {realPayment} using your online banking app, no card details required.
       </Text>
-
       <MockMerchantWrap>
+        <TextHeader>DEMO MERCHANT</TextHeader>
         <SaleTextHeader>Nike Dunk Low Michigan State</SaleTextHeader>
         <MockMerchant>
           <SaleImgWrap>
@@ -167,8 +167,15 @@ const MockMerchantWrap = styled.div`
   border-top: 0.5px solid lightgrey;
 `;
 
+const TextHeader = styled.p`
+  margin: 20px 0 10px 0;
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-size: 16px;
+`;
+
 const SaleTextHeader = styled.p`
-  margin: 5px 0 10px 0;
+  margin: 20px 0 10px 0;
   font-family: "Space Mono";
   font-size: 16px;
 `;
@@ -184,6 +191,7 @@ const MockMerchant = styled.section`
 const Text = styled.p`
   color: grey;
   font-size: 14px;
+  margin: 30px 0px;
 `;
 
 const BoldText = styled.a`

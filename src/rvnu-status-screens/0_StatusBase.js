@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import OrderStatus from "./2_OrderStatus";
 import PageLoading from "./PageLoading";
-import FootShopLogo from "../rvnu-assets/Foot-Shop-logo.png";
+import RvnuLogo from "../rvnu-assets/RVNU-black.png";
 import api from "../utils/api";
 
 export default function Rvnu() {
@@ -81,7 +81,7 @@ export default function Rvnu() {
     <RvnuContainer>
       <BodyWindow>
         <Header>
-          <img src={FootShopLogo} alt="RVNU Logo" height="70" />
+          <img src={RvnuLogo} alt="RVNU Logo" height="15" />
         </Header>
         <Body>
           <React.Fragment>
@@ -136,6 +136,7 @@ const Header = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 const Body = styled.section`
