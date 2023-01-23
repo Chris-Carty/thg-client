@@ -168,7 +168,7 @@ const MockMerchantWrap = styled.div`
 `;
 
 const TextHeader = styled.p`
-  margin: 20px 0 10px 0;
+  margin: 5px 0 10px 0;
   font-family: "Space Mono";
   font-weight: 700;
   font-size: 16px;
@@ -191,7 +191,7 @@ const MockMerchant = styled.section`
 const Text = styled.p`
   color: grey;
   font-size: 14px;
-  margin: 30px 0px;
+  margin: 20px 0px;
 `;
 
 const BoldText = styled.a`

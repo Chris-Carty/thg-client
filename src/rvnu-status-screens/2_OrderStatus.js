@@ -15,7 +15,8 @@ export default function OrderSuccess({ paymentStatus }) {
     <FormWrapper>
       <Text>
         Thanks for testing the RVNU payment experience. Please reach out to
-        Chris or Jack and share your feedback!
+        Chris (chris@rvnu.world) or Jack (jack@rvnu.world) and share your
+        feedback.
       </Text>
       <MockMerchantWrap>
         <TextHeader>DEMO MERCHANT</TextHeader>
@@ -50,7 +51,7 @@ const SaleImgWrap = styled.div`
 const Text = styled.p`
   color: dark-grey;
   font-size: 14px;
-  margin: 30px 0px;
+  margin: 20px 0px;
 `;
 
 const MockMerchant = styled.section`
@@ -67,7 +68,7 @@ const MockMerchantWrap = styled.div`
 `;
 
 const TextHeader = styled.p`
-  margin: 20px 0 10px 0;
+  margin: 5px 0 10px 0;
   font-family: "Space Mono";
   font-weight: 700;
   font-size: 16px;
