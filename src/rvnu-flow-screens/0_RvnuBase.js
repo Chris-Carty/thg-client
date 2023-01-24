@@ -52,7 +52,7 @@ const BodyWindow = styled.section`
   min-width: 500px;
   max-height: 750px;
   min-height: 750px;
-  padding: 20px;
+  padding: 30px;
   box-sizing: border-box;
   border-radius: 3px;
   display: flex;
@@ -63,7 +63,7 @@ const BodyWindow = styled.section`
     min-width: 100%;
     max-height: 100vh;
     min-height: 100vh;
-    padding: 5px;
+    padding: 12.5px;
     overflow-x: hidden !important;
     background: rgba(255, 255, 255, 255);
   }
@@ -74,7 +74,7 @@ const Header = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0px 10px 0px;
 `;
 
 const Body = styled.section`

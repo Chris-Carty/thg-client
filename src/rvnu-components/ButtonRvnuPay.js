@@ -3,7 +3,6 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
-import BoltIcon from "@mui/icons-material/Bolt";
 import RvnuLogo from "../rvnu-assets/RVNU-white.png";
 
 export default function ButtonRvnuPay({ buttonText, loading, ...props }) {
@@ -36,8 +35,7 @@ export default function ButtonRvnuPay({ buttonText, loading, ...props }) {
             <InstantBankTextWrap>
               <Text>Pay now with</Text>
               <HeadlineWrap>
-                <BoltIcon sx={{ height: 20 }} />
-                <img src={RvnuLogo} alt="RVNU Logo" height="12" />
+                <img src={RvnuLogo} alt="RVNU Logo" height="14" />
               </HeadlineWrap>
             </InstantBankTextWrap>
           </PayByBankWrap>
@@ -76,5 +74,5 @@ const HeadlineWrap = styled.div`
 const Text = styled.p`
   color: white;
   padding: 0px;
-  margin: 0px;
+  margin: 0px 2px 0px 0px;
 `;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import FormWrapper from "../rvnu-components/FormWrapper";
 import TextFieldUser from "../rvnu-components/text/TextField";
 import Dunk from "../rvnu-assets/dunk.jpg";
-import Sizes from "../rvnu-assets/sizes-4.png";
 import InputAdornment from "@mui/material/InputAdornment";
 import CurrencyPoundIcon from "@mui/icons-material/CurrencyPound";
 import ButtonRvnuPay from "../rvnu-components/ButtonRvnuPay";
@@ -84,27 +83,22 @@ export default function Form() {
     }
   };
 
-  const rvnuText = <BoldText>RVNU</BoldText>;
-
   const realPayment = <BoldText>real payment</BoldText>;
 
   return (
     <FormWrapper>
       <Text>
-        Welcome to the {rvnuText} user acceptance testing space. You will make a{" "}
-        {realPayment} using your online banking app, no card details required.
+        Welcome to the RVNU user acceptance testing space. You will make a{" "}
+        {realPayment} using your online banking app.
       </Text>
       <MockMerchantWrap>
         <TextHeader>DEMO MERCHANT</TextHeader>
         <SaleTextHeader>Nike Dunk Low Michigan State</SaleTextHeader>
+        <SaleTextHeader>Size: 10 Quantity: 1</SaleTextHeader>
         <MockMerchant>
           <SaleImgWrap>
             <img src={Dunk} alt="Nike Dunk Shoe" width="150" />
           </SaleImgWrap>
-
-          <SaleInfoWrap>
-            <img src={Sizes} alt="Shoe sizes" width="100%" />
-          </SaleInfoWrap>
         </MockMerchant>
       </MockMerchantWrap>
 
@@ -152,30 +146,25 @@ export default function Form() {
 }
 
 // Styled comononets
-const SaleInfoWrap = styled.div`
-  margin: 30px 0px 30px 0px;
-`;
-
 const SaleImgWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin: 10px 0px 30px 0px;
 `;
 
 const MockMerchantWrap = styled.div`
   padding-top: 10px;
-  border-top: 0.5px solid lightgrey;
 `;
 
 const TextHeader = styled.p`
-  margin: 5px 0 10px 0;
+  margin: 0px 0 10px 0;
   font-family: "Space Mono";
   font-weight: 700;
   font-size: 16px;
 `;
 
 const SaleTextHeader = styled.p`
-  margin: 20px 0 10px 0;
+  margin: 25px 0px 10px 0px;
   font-family: "Space Mono";
   font-size: 16px;
 `;
@@ -202,6 +191,7 @@ const BoldText = styled.a`
 
 const TextFieldWrap = styled.section`
   display: flex;
+  margin-top: 10px;
   @media (max-width: 400px) {
     flex-direction: column;
   }

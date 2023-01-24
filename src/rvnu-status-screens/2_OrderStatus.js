@@ -1,9 +1,7 @@
 import React from "react";
 import FormWrapper from "../rvnu-components/FormWrapper";
 import styled from "styled-components";
-import HelperText from "../rvnu-components/text/HelperText";
 import FormButton from "../rvnu-components/Button";
-import Dunk from "../rvnu-assets/dunk.jpg";
 
 export default function OrderSuccess({ paymentStatus }) {
   //Reset demo
@@ -13,24 +11,19 @@ export default function OrderSuccess({ paymentStatus }) {
 
   return (
     <FormWrapper>
-      <Text>
-        Thanks for testing the RVNU payment experience. Please reach out to
-        Chris (chris@rvnu.world) or Jack (jack@rvnu.world) and share your
-        feedback.
-      </Text>
-      <MockMerchantWrap>
-        <TextHeader>DEMO MERCHANT</TextHeader>
-        <SaleTextHeader>{`Order ${paymentStatus}`}</SaleTextHeader>
-        <MockMerchant>
-          <SaleImgWrap>
-            <img src={Dunk} alt="Nike Dunk Shoe" width="150" />
-          </SaleImgWrap>
-        </MockMerchant>
-      </MockMerchantWrap>
-      <FormButton
-        buttonText={"Reset Demo"}
-        onClick={() => reset()}
-      ></FormButton>
+      <BodyWrapper>
+        <MockMerchantWrap>
+          <SaleTextHeader>{`Order ${paymentStatus}`}</SaleTextHeader>
+        </MockMerchantWrap>
+        <Text>
+          Thanks for testing the RVNU payment experience. Please reach out to
+          Chris or Jack and share your feedback.
+        </Text>
+        <FormButton
+          buttonText={"Reset Demo"}
+          onClick={() => reset()}
+        ></FormButton>
+      </BodyWrapper>
     </FormWrapper>
   );
 }
@@ -42,34 +35,17 @@ const SaleTextHeader = styled.p`
   font-size: 16px;
 `;
 
-const SaleImgWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0px 20px 0px;
-`;
-
 const Text = styled.p`
-  color: dark-grey;
+  color: black;
   font-size: 14px;
-  margin: 20px 0px;
-`;
-
-const MockMerchant = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
-  align-content: space-between;
+  margin: 20px 0px 30px 0px;
 `;
 
 const MockMerchantWrap = styled.div`
-  padding-top: 10px;
-  border-top: 0.5px solid lightgrey;
+  margin: 0px 0px 10px 0px;
 `;
 
-const TextHeader = styled.p`
-  margin: 5px 0 10px 0;
-  font-family: "Space Mono";
-  font-weight: 700;
-  font-size: 16px;
+const BodyWrapper = styled.p`
+  display: flex;
+  flex-direction: column;
 `;
