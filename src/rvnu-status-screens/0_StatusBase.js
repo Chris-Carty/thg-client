@@ -114,7 +114,7 @@ const BodyWindow = styled.section`
   min-width: 500px;
   max-height: 750px;
   min-height: 750px;
-  padding: 30px;
+  padding: 30px 20px;
   box-sizing: border-box;
   border-radius: 3px;
   display: flex;
@@ -136,7 +136,7 @@ const Header = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 20px 0px 10px 0px;
+  margin: 30px 0px 30px 0px;
 `;
 
 const Body = styled.section`

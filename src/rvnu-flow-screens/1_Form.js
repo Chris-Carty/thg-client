@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FormWrapper from "../rvnu-components/FormWrapper";
 import TextFieldUser from "../rvnu-components/text/TextField";
-import Dunk from "../rvnu-assets/dunk.jpg";
 import InputAdornment from "@mui/material/InputAdornment";
 import CurrencyPoundIcon from "@mui/icons-material/CurrencyPound";
 import ButtonRvnuPay from "../rvnu-components/ButtonRvnuPay";
 import api from "../utils/api";
+import PayByBankInfo from "../rvnu-components/text/PayByBankInfo";
 
 export default function Form() {
   // CONFIG
@@ -91,17 +91,7 @@ export default function Form() {
         Welcome to the RVNU user acceptance testing space. You will make a{" "}
         {realPayment} using your online banking app.
       </Text>
-      <MockMerchantWrap>
-        <TextHeader>DEMO MERCHANT</TextHeader>
-        <SaleTextHeader>Nike Dunk Low Michigan State</SaleTextHeader>
-        <SaleTextHeader>Size: 10 Quantity: 1</SaleTextHeader>
-        <MockMerchant>
-          <SaleImgWrap>
-            <img src={Dunk} alt="Nike Dunk Shoe" width="150" />
-          </SaleImgWrap>
-        </MockMerchant>
-      </MockMerchantWrap>
-
+      <PayByBankInfo />
       <TextFieldWrap>
         <TextFieldGrow>
           <TextFieldUser
@@ -146,52 +136,21 @@ export default function Form() {
 }
 
 // Styled comononets
-const SaleImgWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0px 30px 0px;
-`;
-
-const MockMerchantWrap = styled.div`
-  padding-top: 10px;
-`;
-
-const TextHeader = styled.p`
-  margin: 0px 0 10px 0;
-  font-family: "Space Mono";
-  font-weight: 700;
-  font-size: 16px;
-`;
-
-const SaleTextHeader = styled.p`
-  margin: 25px 0px 10px 0px;
-  font-family: "Space Mono";
-  font-size: 16px;
-`;
-
-const MockMerchant = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
-  align-content: space-between;
-`;
-
 const Text = styled.p`
-  color: grey;
-  font-size: 14px;
   margin: 20px 0px;
+
+  @media (max-width: 350px) {
+    font-size: 14px;
+  }
 `;
 
 const BoldText = styled.a`
   font-weight: 700;
-  color: black;
-  font-size: 14px;
+  color: #6c71ff;
 `;
 
 const TextFieldWrap = styled.section`
   display: flex;
-  margin-top: 10px;
   @media (max-width: 400px) {
     flex-direction: column;
   }

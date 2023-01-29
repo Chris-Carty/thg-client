@@ -13,7 +13,7 @@ export default function OrderSuccess({ paymentStatus }) {
     <FormWrapper>
       <BodyWrapper>
         <MockMerchantWrap>
-          <SaleTextHeader>{`Order ${paymentStatus}`}</SaleTextHeader>
+          <SaleTextHeader>{`Payment ${paymentStatus}`}</SaleTextHeader>
         </MockMerchantWrap>
         <Text>
           Thanks for testing the RVNU payment experience. Please reach out to
@@ -30,9 +30,9 @@ export default function OrderSuccess({ paymentStatus }) {
 
 // Styled components
 const SaleTextHeader = styled.p`
-  margin: 20px 0 10px 0;
-  font-family: "Space Mono";
+  margin: 0px 0 10px 0;
   font-size: 16px;
+  font-weight: 500;
 `;
 
 const Text = styled.p`
