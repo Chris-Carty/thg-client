@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "./1_Form";
 import RvnuLogo from "../rvnu-assets/RVNU-black.png";
-import BankLogos from "../rvnu-assets/bank-logos.png";
 
 export default function Rvnu() {
   // Set activeStep in RVNU checkout flow
@@ -24,9 +23,6 @@ export default function Rvnu() {
         <Header>
           <img src={RvnuLogo} alt="RVNU Logo" height="15" />
         </Header>
-        <BankLogosWrap>
-          <img src={BankLogos} alt="Bank Logo" height="30" />
-        </BankLogosWrap>
         <Body>
           <React.Fragment>{getStepContent(activeStep)}</React.Fragment>
         </Body>
@@ -87,11 +83,4 @@ const Body = styled.section`
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-`;
-
-const BankLogosWrap = styled.section`
-  display: flex;
-  margin: 20px 0px 20px 0px;
-  justify-content: center;
-  align-items: center;
 `;

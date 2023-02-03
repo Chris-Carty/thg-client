@@ -137,7 +137,7 @@ export default function Form() {
 
 // Styled comononets
 const Text = styled.p`
-  margin: 20px 0px;
+  margin: 10px 0px;
 
   @media (max-width: 350px) {
     font-size: 14px;

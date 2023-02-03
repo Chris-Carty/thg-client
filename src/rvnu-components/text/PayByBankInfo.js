@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import BankLogos from "../../rvnu-assets/bank-logos.png";
 
 export default function PayByBankInfo() {
   return (
@@ -18,7 +19,12 @@ export default function PayByBankInfo() {
       </BulletWrap>
       <BulletWrap>
         <CheckCircleOutlineIcon style={{ color: "#000", fontSize: 18 }} />
-        <Text>We accept all major UK banks</Text>
+        <LogoWrap>
+          <Text>We accept all major UK banks</Text>
+          <BankLogosWrap>
+            <img src={BankLogos} alt="Bank Logo" height="25" />
+          </BankLogosWrap>
+        </LogoWrap>
       </BulletWrap>
     </InfoWrap>
   );
@@ -27,7 +33,11 @@ export default function PayByBankInfo() {
 const InfoWrap = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 20px 0px 30px 0px;
+  margin: 30px 0px 30px 0px;
+
+  @media (max-width: 350px) {
+    margin: 20px 0px 10px 0px;
+  }
 `;
 
 const BulletWrap = styled.section`
@@ -36,7 +46,27 @@ const BulletWrap = styled.section`
   margin-bottom: 20px;
 `;
 
+const LogoWrap = styled.section`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 350px) {
+    flex-direction: column;
+  }
+`;
+
 const Text = styled.p`
   font-size: 14px;
   margin: 0px 0px 0px 15px;
+`;
+
+const BankLogosWrap = styled.section`
+  display: flex;
+  margin: 0px 10px;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 350px) {
+    margin: 5px 0px;
+  }
 `;

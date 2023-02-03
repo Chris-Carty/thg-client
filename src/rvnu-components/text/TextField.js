@@ -13,7 +13,8 @@ export default function TextFieldUser({ ...props }) {
 
 // Styled components
 const TextFieldWrapper = styledComponent.div`
-  margin: 5px 0px 10px 0px;
+  margin: 5px 0px 20px 0px;
+
 `;
 
 // MUI Styled
