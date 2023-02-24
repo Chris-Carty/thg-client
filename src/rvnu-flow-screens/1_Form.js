@@ -51,7 +51,7 @@ export default function Form() {
     setLoading(true);
 
     const currency = "GBP";
-    const reference = `uat-test-${payerName}`;
+    const reference = "UAT-PAY";
 
     try {
       api
