@@ -80,9 +80,9 @@ export default function Rvnu() {
   return (
     <RvnuContainer>
       <BodyWindow>
-        <Header>
-          <img src={RvnuLogo} alt="RVNU Logo" height="15" />
-        </Header>
+        <HeaderBanner>
+          <img src={RvnuLogo} alt="RVNU Logo" height="14" />
+        </HeaderBanner>
         <Body>
           <React.Fragment>
             <React.Fragment>{getStepContent(activeStep)}</React.Fragment>
@@ -110,33 +110,44 @@ const RvnuContainer = styled.section`
 const BodyWindow = styled.section`
   background: rgba(255, 255, 255, 255);
   font-weight: 200;
-  max-width: 500px;
-  min-width: 500px;
+  max-width: 475px;
+  min-width: 475px;
   max-height: 750px;
   min-height: 750px;
-  padding: 30px 20px;
+  padding: 30px 20px 20px 20px;
   box-sizing: border-box;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   @media (max-width: 500px) {
     max-width: 100%;
     min-width: 100%;
-    max-height: 100vh;
     min-height: 100vh;
-    padding: 12.5px;
+    max-height: 100vh;
     overflow-x: hidden !important;
     background: rgba(255, 255, 255, 255);
   }
 `;
 
-const Header = styled.section`
+const HeaderBanner = styled.section`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  margin: 30px 0px 30px 0px;
+  align-items: center;
+  margin: 0px 10px 0px 0px;
+  min-height: 50px;
+  max-height: 50px;
+  margin: -30px -20px;
+  padding: 0px 20px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px;
+
+  @media (max-width: 500px) {
+    min-height: 45px;
+    max-height: 45px;
+  }
 `;
 
 const Body = styled.section`

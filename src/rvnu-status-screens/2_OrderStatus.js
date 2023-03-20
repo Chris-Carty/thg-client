@@ -31,7 +31,7 @@ export default function OrderSuccess({ paymentStatus }) {
 // Styled components
 const SaleTextHeader = styled.p`
   margin: 0px 0 10px 0;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
 `;
 
@@ -39,6 +39,7 @@ const Text = styled.p`
   color: black;
   font-size: 14px;
   margin: 20px 0px 30px 0px;
+  text-align: center;
 `;
 
 const MockMerchantWrap = styled.div`
@@ -48,4 +49,6 @@ const MockMerchantWrap = styled.div`
 const BodyWrapper = styled.p`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 `;

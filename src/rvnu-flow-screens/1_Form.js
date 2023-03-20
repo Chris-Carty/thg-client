@@ -6,7 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import CurrencyPoundIcon from "@mui/icons-material/CurrencyPound";
 import ButtonRvnuPay from "../rvnu-components/ButtonRvnuPay";
 import api from "../utils/api";
-import PayByBankInfo from "../rvnu-components/text/PayByBankInfo";
+import RvnuLogo from "../rvnu-assets/amnesty-international-logo-black-and-white.png";
 
 export default function Form() {
   // CONFIG
@@ -85,13 +85,17 @@ export default function Form() {
 
   const realPayment = <BoldText>real payment</BoldText>;
 
+  const amnesty = <AmnestyText>Amnesty International</AmnestyText>;
+
   return (
     <FormWrapper>
       <Text>
-        Welcome to the RVNU user acceptance testing space. You will make a{" "}
-        {realPayment} using your online banking app.
+        Welcome to the RVNU user testing space. You will make a {realPayment} by
+        donating to {amnesty}.
       </Text>
-      <PayByBankInfo />
+      <Amnesty>
+        <img src={RvnuLogo} alt="RVNU Logo" height="125" />
+      </Amnesty>
       <TextFieldWrap>
         <TextFieldGrow>
           <TextFieldUser
@@ -111,7 +115,7 @@ export default function Form() {
         <TextFieldShrink>
           <TextFieldUser
             type="number"
-            label="Amount (£1.00 min)"
+            label="Donation (£1.00 min)"
             placeholder="1.00"
             value={paymentAmount}
             onChange={(e) => setPaymentAmount(e.target.value)}
@@ -137,7 +141,8 @@ export default function Form() {
 
 // Styled comononets
 const Text = styled.p`
-  margin: 10px 0px;
+  margin: 40px 0px 0px 0px;
+  text-align: center;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -147,6 +152,10 @@ const Text = styled.p`
 const BoldText = styled.a`
   font-weight: 700;
   color: #6c71ff;
+`;
+
+const AmnestyText = styled.a`
+  font-weight: 700;
 `;
 
 const TextFieldWrap = styled.section`
@@ -168,4 +177,14 @@ const TextFieldShrink = styled.section`
     margin-left: 0px;
     width: 100%;
   }
+`;
+
+const Amnesty = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ededed;
+  border-radius: 10px;
+  height: 180px;
+  margin: 30px 0px;
 `;

@@ -16,4 +16,5 @@ const Wrapper = styled.div`
   font-weight: 200;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 30px;
 `;
