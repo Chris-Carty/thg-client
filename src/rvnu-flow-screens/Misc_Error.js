@@ -24,7 +24,7 @@ const RvnuContainer = styled.section`
   min-width: 100vw;
   max-height: 100vh;
   min-height: 100vh;
-  background: #262626;
+  background: #242d35;
   overflow: hidden;
   background: rgba(234, 234, 234, 255);
 `;

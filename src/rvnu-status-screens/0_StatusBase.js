@@ -99,7 +99,7 @@ const RvnuContainer = styled.section`
   min-width: 100vw;
   max-height: 100vh;
   min-height: 100vh;
-  background: #262626;
+  background: #242d35;
   display: flex;
   flex-direction: column;
   align-items: center;
