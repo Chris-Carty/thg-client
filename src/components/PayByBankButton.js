@@ -3,9 +3,8 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
-import RvnuLogo from "../rvnu-assets/RVNU-white.png";
 
-export default function ButtonRvnuPay({ buttonText, loading, ...props }) {
+export default function PayByBankButton({ buttonText, loading, ...props }) {
   const theme = createTheme({
     typography: {
       button: {
@@ -33,10 +32,7 @@ export default function ButtonRvnuPay({ buttonText, loading, ...props }) {
         ) : (
           <PayByBankWrap>
             <InstantBankTextWrap>
-              <Text>Pay now with</Text>
-              <HeadlineWrap>
-                <img src={RvnuLogo} alt="RVNU Logo" height="14" />
-              </HeadlineWrap>
+              <Text>Pay By Bank</Text>
             </InstantBankTextWrap>
           </PayByBankWrap>
         )}

@@ -1,8 +1,8 @@
 import React from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import FormWrapper from "../rvnu-components/FormWrapper";
-import Subtitle from "../rvnu-components/text/Subtitle";
-import HelperText from "../rvnu-components/text/HelperText";
+import FormWrapper from "../components/FormWrapper";
+import Subtitle from "../components/text/Subtitle";
+import HelperText from "../components/text/HelperText";
 import styled from "styled-components";
 
 export default function ErrorScreen({ activeStep, setActiveStep }) {

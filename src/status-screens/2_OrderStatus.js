@@ -1,7 +1,7 @@
 import React from "react";
-import FormWrapper from "../rvnu-components/FormWrapper";
+import FormWrapper from "../components/FormWrapper";
 import styled from "styled-components";
-import FormButton from "../rvnu-components/Button";
+import FormButton from "../components/Button";
 
 export default function OrderSuccess({ paymentStatus }) {
   //Reset demo

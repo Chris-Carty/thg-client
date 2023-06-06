@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import OrderStatus from "./2_OrderStatus";
 import PageLoading from "./PageLoading";
-import RvnuLogo from "../rvnu-assets/RVNU-black.png";
+import MarksLogo from "../assets/m-s-logo.png";
 import api from "../utils/api";
 
-export default function Rvnu() {
+export default function Pay() {
   // Set activeStep in RVNU checkout flow
   const [activeStep, setActiveStep] = useState(0);
   // Set payment status var
@@ -78,10 +78,10 @@ export default function Rvnu() {
   };
 
   return (
-    <RvnuContainer>
+    <Container>
       <BodyWindow>
         <HeaderBanner>
-          <img src={RvnuLogo} alt="RVNU Logo" height="14" />
+          <img src={MarksLogo} alt="RVNU Logo" height="14" />
         </HeaderBanner>
         <Body>
           <React.Fragment>
@@ -89,12 +89,12 @@ export default function Rvnu() {
           </React.Fragment>
         </Body>
       </BodyWindow>
-    </RvnuContainer>
+    </Container>
   );
 }
 
 // Styled Components
-const RvnuContainer = styled.section`
+const Container = styled.section`
   max-width: 100vw;
   min-width: 100vw;
   max-height: 100vh;
