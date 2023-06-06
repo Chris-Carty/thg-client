@@ -27,7 +27,7 @@ export default function ScanMe({ activeStep, setActiveStep }) {
   const stepBack = () => {
      setLoading(false)
      setError(true)
-     setActiveStep(activeStep + 1);
+     setActiveStep(activeStep - 1);
   }
 
   const getPaymentStatus = async () => {
