@@ -9,6 +9,8 @@ export default function Form({ activeStep, setActiveStep }) {
 
   // Loading Spinner for button
   const [loading, setLoading] = useState(false);
+  // Loading Spinner for button
+  const [error, setError] = useState(false);
 
   const delayLoad = () => {
     setLoading(true);
@@ -29,9 +31,13 @@ export default function Form({ activeStep, setActiveStep }) {
         })
         .catch((error) => {
           console.log(error);
+          setLoading(false);
+          setError(true)
         });
     } catch {
       console.log("Error updating session mobile number");
+      setLoading(false);
+      setError(true)
     }
   };
 
@@ -54,6 +60,11 @@ export default function Form({ activeStep, setActiveStep }) {
         loading={loading}
         onClick={() => delayLoad()}
       ></PayByBankButton>
+      { error ? 
+        <Error>Server error.</Error>
+         :
+        <Error></Error> 
+      }
     </FormWrapper>
   );
 }
@@ -91,4 +102,15 @@ const Percy = styled.section`
   border-radius: 10px;
   height: 180px;
   margin: 30px 0px;
+`;
+
+const Error = styled.p`
+  margin: 40px 0px 40px 0px;
+  text-align: center;
+  font-weight: 700;
+  color: red;
+
+  @media (max-width: 350px) {
+    font-size: 14px;
+  }
 `;
