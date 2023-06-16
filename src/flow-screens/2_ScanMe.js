@@ -53,7 +53,7 @@ export default function ScanMe({ activeStep, setActiveStep }) {
                 setLoading(true)
                 // Keep polling
                 setTimeout(getPaymentStatus, 5000);
-              } else if (response_obj.status === 'SETTLED') {
+              } else if (response_obj.status === 'SETTLED' || response_obj.status === 'SENT' ) {
                 // present refund button
                 setActiveStep(activeStep + 1);
               }
