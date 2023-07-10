@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Form from "./1_Pay";
 import ScanMe from "./2_ScanMe"
 import Refund from "./3_Refund"
-import MarksLogo from "../assets/m-s-logo.png";
+import Logo from "../assets/O2.png";
 import getCookie from "../utils/getCookie";
 import clearCookies from "../utils/clearCookies";
 
@@ -91,7 +91,7 @@ export default function Base() {
       <BodyWindow>
         <HeaderBanner>
           {stepBackButton(activeStep)}
-          <img src={MarksLogo} alt="M & S Logo" height="30" />
+          <img src={Logo} alt="Logo" height="30" />
           {cancelButton(activeStep)}
         </HeaderBanner>
         <Body>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import OrderStatus from "./2_OrderStatus";
 import PageLoading from "./PageLoading";
-import MarksLogo from "../assets/m-s-logo.png";
+import Logo from "../assets/O2.png";
 import api from "../utils/api";
 
 export default function Pay() {
@@ -81,7 +81,7 @@ export default function Pay() {
     <Container>
       <BodyWindow>
         <HeaderBanner>
-          <img src={MarksLogo} alt="RVNU Logo" height="14" />
+          <img src={Logo} alt="Logo" height="14" />
         </HeaderBanner>
         <Body>
           <React.Fragment>

@@ -75,9 +75,9 @@ export default function ScanMe({ activeStep, setActiveStep }) {
 
   return (
     <FormWrapper>
-       <Text0>
+       <Text1>
         Scan the QR code with your phone's camera and follow the instructions
-      </Text0>
+      </Text1>
       <div style={{ display: 'flex', justifyContent: 'center', height: "auto", margin: "0 auto", maxWidth: 250, width: "100%" }}>
         { loading ? 
         <CircularProgress sx={{color: "black"}} />
@@ -89,25 +89,41 @@ export default function ScanMe({ activeStep, setActiveStep }) {
           viewBox={`0 0 256 256`}
         /> }
       </div>
+      <Text2>
+       PaymentId: {transaction_id}
+      </Text2>
        { error ? 
-        <Text1>Payment failed. The demo will now reset.</Text1>
+        <Text3>Payment failed. The demo will now reset.</Text3>
          :
-        <Text1></Text1> }
+        <Text3></Text3> }
     </FormWrapper>
   );
 }
 
 // Styled comononets
-const Text0 = styled.p`
+const Text1 = styled.p`
   margin: 40px 0px 40px 0px;
   text-align: center;
+  color: #010167;
 
   @media (max-width: 350px) {
     font-size: 14px;
   }
 `;
 
-const Text1 = styled.p`
+const Text2 = styled.p`
+  margin: 40px 0px 40px 0px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #010167;
+
+  @media (max-width: 350px) {
+    font-size: 14px;
+  }
+`;
+
+const Text3 = styled.p`
   margin: 40px 0px 40px 0px;
   text-align: center;
   font-weight: 700;

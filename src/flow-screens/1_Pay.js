@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormWrapper from "../components/FormWrapper";
 import PayByBankButton from "../components/PayByBankButton";
 import api from "../utils/api";
-import PercyPig from "../assets/percy-giphy(2).gif";
+import HeroImage from "../assets/samsung-s23.png";
 
 export default function Form({ activeStep, setActiveStep }) {
 
@@ -42,19 +42,19 @@ export default function Form({ activeStep, setActiveStep }) {
   };
 
 
-  const realPayment = <BoldText>real £1 payment</BoldText>;
+  const realPayment = <BoldText>Checkout</BoldText>;
 
   return (
     <FormWrapper>
-      <Text1>
-        Welcome to Percy's piggy bank. You will make a {realPayment} powered by Tink. Oink. 
+       <HeaderText>
+         Samsung Galaxy S23
+       </HeaderText>
+       <Image>
+        <img src={HeroImage} alt="Hero Image" height="160" />
+      </Image>
+       <Text1>
+       Get ready for a refreshed Galaxy experience with the S23. Capture perfect pics after sundown with the Triple rear 50MP camera. Relive every night in perfect clarity. Get ready for a lot of “can you send me that?” 
       </Text1>
-       <Percy>
-        <img src={PercyPig} alt="Percy Pig face" height="160" />
-      </Percy>
-      <Text2>
-       Colin from accounts will be able to initiate an instant refund after the transaction has settled.
-      </Text2>
       
       <PayByBankButton
         loading={loading}
@@ -71,17 +71,20 @@ export default function Form({ activeStep, setActiveStep }) {
 
 // Styled comononets
 const Text1 = styled.p`
-  margin: 40px 0px 0px 0px;
+  margin: 40px 0px 20px 0px;
   text-align: center;
+  color: #010167;
 
   @media (max-width: 350px) {
     font-size: 14px;
   }
 `;
 
-const Text2 = styled.p`
-  margin: 0px 0px 10px 0px;
+const HeaderText = styled.p`
+  margin: 40px 0px 0px 0px;
   text-align: center;
+  color: #010167;
+  font-weight: 700;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -94,14 +97,14 @@ const BoldText = styled.a`
   color: #f04f97;
 `;
 
-const Percy = styled.section`
+const Image = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
   background: #ededed;
   border-radius: 10px;
   height: 180px;
-  margin: 30px 0px;
+  margin: 30px 0px 0px 0px;
 `;
 
 const Error = styled.p`

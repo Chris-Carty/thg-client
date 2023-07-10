@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormWrapper from "../components/FormWrapper";
 import RefundButton from "../components/RefundButton";
 import api from "../utils/api";
-import Colin from "../assets/colin-giphy.gif";
+import Photo from "../assets/my-o2.png";
 import getCookie from "../utils/getCookie";
 
 export default function Form() {
@@ -47,19 +47,16 @@ export default function Form() {
   };
 
 
-  const realPayment = <BoldText>Payment settled successfully</BoldText>;
+  const realPayment = <BoldText>Thanks for your purchase</BoldText>;
 
   return (
     <FormWrapper>
       <Text1>
         {realPayment} 
       </Text1>
-       <Percy>
-        <img src={Colin} alt="Percy Pig face" height="150" />
-      </Percy>
-      <Text2>
-      Colin from accounts can now initiate an instant refund, just hit the refund button below!
-      </Text2>
+       <Image>
+        <img src={Photo} alt="Generic photo" height="280" />
+      </Image>
       { refundSuccess ? 
        <Text3>
           Refund sent!
@@ -96,20 +93,11 @@ const Text1 = styled.p`
   }
 `;
 
-const Text2 = styled.p`
-  margin: 0px 0px 10px 0px;
-  text-align: center;
-
-  @media (max-width: 350px) {
-    font-size: 14px;
-  }
-`;
-
 const Text3 = styled.p`
   margin: 0px 0px 10px 0px;
   text-align: center;
   font-weight: 700;
-  color: #8ec144;
+  color: #010167;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -118,10 +106,10 @@ const Text3 = styled.p`
 
 const BoldText = styled.a`
   font-weight: 700;
-  color: #8ec144;
+  color: #010167;
 `;
 
-const Percy = styled.section`
+const Image = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,4 +117,5 @@ const Percy = styled.section`
   border-radius: 10px;
   height: 180px;
   margin: 30px 0px;
+  padding: 50px 0px;
 `;
