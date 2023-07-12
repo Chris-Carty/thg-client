@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormWrapper from "../components/FormWrapper";
 import RefundButton from "../components/RefundButton";
 import api from "../utils/api";
-import Photo from "../assets/my-o2.png";
+import Photo from "../assets/filler.png";
 import getCookie from "../utils/getCookie";
 
 export default function Form() {
@@ -55,14 +55,14 @@ export default function Form() {
         {realPayment} 
       </Text1>
        <Image>
-        <img src={Photo} alt="Generic photo" height="280" />
+        <img src={Photo} alt="Generic photo" height="230" />
       </Image>
       { refundSuccess ? 
        <Text3>
           Refund sent!
         </Text3> :
         <Text3 style={{display: "none"}}>
-        Refund not sent
+        Refund failed
         </Text3>
         }
       { refundSuccess ?  
@@ -97,7 +97,7 @@ const Text3 = styled.p`
   margin: 0px 0px 10px 0px;
   text-align: center;
   font-weight: 700;
-  color: #010167;
+  color: #000;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -106,7 +106,7 @@ const Text3 = styled.p`
 
 const BoldText = styled.a`
   font-weight: 700;
-  color: #010167;
+  color: #000;
 `;
 
 const Image = styled.section`

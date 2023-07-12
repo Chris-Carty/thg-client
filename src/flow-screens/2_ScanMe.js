@@ -104,7 +104,7 @@ export default function ScanMe({ activeStep, setActiveStep }) {
 const Text1 = styled.p`
   margin: 40px 0px 40px 0px;
   text-align: center;
-  color: #010167;
+  color: #000;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -116,7 +116,7 @@ const Text2 = styled.p`
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  color: #010167;
+  color: #000;
 
   @media (max-width: 350px) {
     font-size: 14px;

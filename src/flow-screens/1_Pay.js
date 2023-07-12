@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormWrapper from "../components/FormWrapper";
 import PayByBankButton from "../components/PayByBankButton";
 import api from "../utils/api";
-import HeroImage from "../assets/samsung-s23.png";
+import HeroImage from "../assets/hero.png";
 
 export default function Form({ activeStep, setActiveStep }) {
 
@@ -47,13 +47,13 @@ export default function Form({ activeStep, setActiveStep }) {
   return (
     <FormWrapper>
        <HeaderText>
-         Samsung Galaxy S23
+         THE Gainer Bundle
        </HeaderText>
        <Image>
-        <img src={HeroImage} alt="Hero Image" height="160" />
+        <img src={HeroImage} alt="Hero Image" height="250" />
       </Image>
        <Text1>
-       Get ready for a refreshed Galaxy experience with the S23. Capture perfect pics after sundown with the Triple rear 50MP camera. Relive every night in perfect clarity. Get ready for a lot of “can you send me that?” 
+       The road to bulking up isn’t easy. If you’re looking to gain weight or increase size you’re going to have to be in a calorie surplus — that’s consuming more calories than you burn in a day.
       </Text1>
       
       <PayByBankButton
@@ -73,7 +73,7 @@ export default function Form({ activeStep, setActiveStep }) {
 const Text1 = styled.p`
   margin: 40px 0px 20px 0px;
   text-align: center;
-  color: #010167;
+  color: #000;
 
   @media (max-width: 350px) {
     font-size: 14px;
@@ -83,7 +83,7 @@ const Text1 = styled.p`
 const HeaderText = styled.p`
   margin: 40px 0px 0px 0px;
   text-align: center;
-  color: #010167;
+  color: #000;
   font-weight: 700;
 
   @media (max-width: 350px) {
@@ -101,9 +101,9 @@ const Image = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ededed;
+  background: #e4e4e4;
   border-radius: 10px;
-  height: 180px;
+  height: 250px;
   margin: 30px 0px 0px 0px;
 `;
 
